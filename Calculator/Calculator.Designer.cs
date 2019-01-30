@@ -241,6 +241,7 @@
             this.btRightParenthesis.TabIndex = 21;
             this.btRightParenthesis.Text = ")";
             this.btRightParenthesis.UseVisualStyleBackColor = true;
+            this.btRightParenthesis.Visible = false;
             // 
             // btLeftParenthesis
             // 
@@ -250,6 +251,7 @@
             this.btLeftParenthesis.TabIndex = 20;
             this.btLeftParenthesis.Text = "(";
             this.btLeftParenthesis.UseVisualStyleBackColor = true;
+            this.btLeftParenthesis.Visible = false;
             // 
             // groupBox1
             // 

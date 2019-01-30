@@ -17,6 +17,10 @@ namespace Calculator
             Binding();
         }
 
+
+        /// <summary>
+        /// 按键绑定事件
+        /// </summary>
         private void Binding()
         {
             bt1.Click += new EventHandler(Number_button_Click);
@@ -35,11 +39,16 @@ namespace Calculator
             btMultiply.Click += new EventHandler(Operator_button_Click);
             btDivide.Click += new EventHandler(Operator_button_Click);
 
+            btLeftParenthesis.Click += new EventHandler(Operator_button_Click);
+            btRightParenthesis.Click += new EventHandler(Operator_button_Click);
+
+
         }
 
         private void Calculator_Load(object sender, EventArgs e)
         {
-            CalculationType = EqualFactory.createOperate(1);
+            //CalculationType = EqualFactory.createOperate(1);
+            radioButton1_CheckedChanged(sender, e);
         }
 
         public virtual string Equal(string strOperator = "+", bool isEqualSign = false) { return ""; }
@@ -56,7 +65,7 @@ namespace Calculator
                 return Result;
             }
         }
-
+        #region 加减乘除类
         /// <summary>
         /// 加法
         /// </summary>
@@ -110,6 +119,7 @@ namespace Calculator
                 return Result;
             }
         }
+        #endregion
 
         public class operationFactory               //处理运算符的类
         {
@@ -136,6 +146,7 @@ namespace Calculator
             }
         }
 
+        #region 变量
         static string total = null;
         static string sOperatorNum;                                  //用来储存输入的每个数
         string sOperator = "";                                 //用来辨别进行何种运算,与显示框tbDisplayScreen.Text相同
@@ -143,9 +154,9 @@ namespace Calculator
         bool needClear = false;     //"CE"键清除信息
         bool needReset = false;     //按"="后输入为数字时重新开始计算
         static bool canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
-        bool OperatorClicked = false;
+        bool OperatorClicked = false; //多次按加减乘除无效
         Calculate calculate;
-
+        #endregion
 
         private void btEqual_Click(object sender, EventArgs e)
         {
@@ -164,12 +175,14 @@ namespace Calculator
             tbDisplayScreen.Text = CalculationType.Click_Num_Button(num);
         }
 
+        //数字按键
         private void Number_button_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
             Click_Num(b.Text);
         }
 
+        //运算符按键
         private void Operator_button_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
@@ -177,6 +190,7 @@ namespace Calculator
             CalculatorEqual(sOperator);
         }
 
+        //清除键
         private void btClear_Click(object sender, EventArgs e)
         {
             total = null;
@@ -193,7 +207,7 @@ namespace Calculator
                 tbDisplayScreen.Text = sOperatorNum;
             }
         }
-
+        //小数点
         private void btPoint_Click(object sender, EventArgs e)
         {
             if (sOperatorNum.IndexOf(".") == -1)
@@ -210,7 +224,7 @@ namespace Calculator
                 }
             }
         }
-
+        #region 简易四则运算
         //简易四则运算
         public class SimpleOperator : Calculator
         {
@@ -280,21 +294,26 @@ namespace Calculator
                 return sOperatorNum;
             }
         }
+        #endregion
 
+        #region 表达式运算
         //表达式运算
         public class OperationExpression : Calculator
         {
-            public override string Equal(string strOperator = "+", bool isEqualSign = false)
+
+            public override string Equal(string strOperator = "+", bool isEqualSign = false)//未实现
             {
-                return "未实现";
+                sOperatorNum += strOperator;
+                return sOperatorNum;
             }
 
-            public override string Click_Num_Button(string num)
+            public override string Click_Num_Button(string num)//未实现
             {
-                return "未实现";
+                sOperatorNum += num;
+                return sOperatorNum;
             }
         }
-
+        #endregion
         public class EqualFactory               //处理运算的类
         {
             public static Calculator createOperate(int equal)
@@ -317,7 +336,9 @@ namespace Calculator
         {
             if (rbSimpleOperator.Checked)
             {
-                CalculationType = EqualFactory.createOperate(1);        //实例化具体的类
+                btLeftParenthesis.Visible = false;
+                btRightParenthesis.Visible = false;
+                CalculationType = EqualFactory.createOperate(1);       
                 btClear_Click(sender, e);
             }
         }
@@ -326,7 +347,9 @@ namespace Calculator
         {
             if (rbOperationExpression.Checked)
             {
-                CalculationType = EqualFactory.createOperate(2);        //实例化具体的类
+                btLeftParenthesis.Visible = true;
+                btRightParenthesis.Visible = true;
+                CalculationType = EqualFactory.createOperate(2);        
                 btClear_Click(sender, e);
             }
         }
