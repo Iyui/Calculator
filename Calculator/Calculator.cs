@@ -33,7 +33,7 @@ namespace Calculator
         /// <summary>
         /// 加法
         /// </summary>
-        public class CalculateAdd:Calculate
+        public class CalculateAdd : Calculate
         {
             public override double GetResult()
             {
@@ -78,7 +78,7 @@ namespace Calculator
             public override double GetResult()
             {
                 double Result = 0;
-                if(NumberB!=0)
+                if (NumberB != 0)
                     Result = NumberA / NumberB;
                 return Result;
             }
@@ -110,53 +110,88 @@ namespace Calculator
         }
 
         static string total = null;
-        static string sOperatorNum;                                  //用来储存输入的每个数
-        string sOperator = "";                                 //用来辨别进行何种运算
+        static string sOperatorNum;                                  //用来储存输入的每个数
+        string sOperator = "";                                 //用来辨别进行何种运算,与显示框tbDisplayScreen.Text相同
         string lastOperator = "";
-        bool isClear = false;
-
-
-        Calculate calculate;   
+        bool needClear = false;     //"CE"键清除信息
+        bool needReset = false;     //按"="后输入为数字时重新开始计算
+        bool canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
+        bool OperatorClicked = false;
+        Calculate calculate;
         private void Click_Num_Button(string num)
         {
-            if (isClear)
+            if (needClear)
             {
                 tbDisplayScreen.Text = "";
-                sOperatorNum = "";
-                isClear = false;
+                sOperatorNum = "0";
+                needClear = false;
             }
+            if(needReset)
+            {
+                total = null;
+                needReset = false;
+            }
+
+            
             tbDisplayScreen.Text += num;
             sOperatorNum += num;
+            if (sOperatorNum.IndexOf(".") == -1)
+            {
+                sOperatorNum = Convert.ToDouble(sOperatorNum).ToString();
+                tbDisplayScreen.Text = sOperatorNum;//去除头部多余的0
+            }
+            canBackSpace = true;
+            OperatorClicked = false;
         }
 
         private void btEqual_Click(object sender, EventArgs e)
         {
-            Equal(sOperator);
+            OperatorClicked = false;
+            Equal(sOperator,true);
         }
 
-        private void Equal(string strOperator)
+        private void Equal(string strOperator = "+",bool isEqualSign = false)
         {
-            
+            needReset = false;
+            if (OperatorClicked)
+                return;
+            OperatorClicked = true;
             if (total == null)
             {
                 lastOperator = strOperator;
                 total = sOperatorNum;
                 sOperatorNum = "";
                 //tbDisplayScreen.Text = "0";
-                isClear = true;
+                needClear = true;
                 return;
             }
-            isClear = true;
+            if (lastOperator == "" || sOperatorNum == "")
+                return;
+            if (sOperatorNum == "0" && lastOperator == "/")
+            {
+                tbDisplayScreen.Text = "除数不能为零";
+                needClear = true;
+                needReset = true;
+                total = null; 
+                return;
+            }
             calculate = operationFactory.createOperate(lastOperator);
-            calculate.NumberA =  Convert.ToDouble(total);
+            calculate.NumberA = Convert.ToDouble(total);
             calculate.NumberB = Convert.ToDouble(sOperatorNum);
-            if(strOperator == "*"|| strOperator=="/")
+            if (strOperator == "*" || strOperator == "/")
                 sOperatorNum = "1";
             else
                 sOperatorNum = "0";
+            if (isEqualSign)
+            {
+                needReset = true;
+            }
             total = calculate.GetResult().ToString();
             tbDisplayScreen.Text = total;
             lastOperator = strOperator;
+            canBackSpace = false;
+            needClear = true;
+
         }
 
         private void bt1_Click(object sender, EventArgs e)
@@ -207,6 +242,7 @@ namespace Calculator
         private void bt0_Click(object sender, EventArgs e)
         {
             Click_Num_Button("0");
+            
         }
         private void btPlus_Click(object sender, EventArgs e)
         {
@@ -228,18 +264,41 @@ namespace Calculator
         private void btDivide_Click(object sender, EventArgs e)
         {
             sOperator = "/";
-            if (sOperatorNum == "0")
-                tbDisplayScreen.Text = "除数不能为零";
-            else
-                Equal(sOperator);
+            Equal(sOperator);
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void btClear_Click(object sender, EventArgs e)
         {
             total = null;
-            sOperatorNum = "0";
-            tbDisplayScreen.Text = "0";
-            isClear = true;
+            sOperatorNum = "";
+            tbDisplayScreen.Text = "";
+            needClear = true;
+        }
+
+        private void btBackSpace_Click(object sender, EventArgs e)
+        {
+            if (sOperatorNum.Length > 0 && canBackSpace)
+            {
+                sOperatorNum = sOperatorNum.Substring(0, sOperatorNum.Length - 1);
+                tbDisplayScreen.Text = sOperatorNum;
+            }
+        }
+
+        private void btPoint_Click(object sender, EventArgs e)
+        {
+            if(sOperatorNum.IndexOf(".") == -1)
+            {
+                if(sOperatorNum.Length ==0)
+                {
+                    sOperatorNum += "0.";
+                    tbDisplayScreen.Text = sOperatorNum;
+                }
+                else
+                {
+                    sOperatorNum += ".";
+                    tbDisplayScreen.Text = sOperatorNum;
+                }
+            }
         }
     }
 }
