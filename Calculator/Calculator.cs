@@ -14,12 +14,19 @@ namespace Calculator
         public Calculator()
         {
             InitializeComponent();
+
         }
+
+        private void Calculator_Load(object sender, EventArgs e)
+        {
+            CalculationType = EqualFactory.createOperate(1);
+        }
+
+        public virtual string Equal(string strOperator = "+", bool isEqualSign = false) { return ""; }
+        public virtual string Click_Num_Button(string num) { return null; }
 
         public class Calculate
         {
-
-
             public double NumberA { get; set; } = 0;
             public double NumberB { get; set; } = 0;
 
@@ -115,156 +122,102 @@ namespace Calculator
         string lastOperator = "";
         bool needClear = false;     //"CE"键清除信息
         bool needReset = false;     //按"="后输入为数字时重新开始计算
-        bool canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
+        static bool canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
         bool OperatorClicked = false;
         Calculate calculate;
-        private void Click_Num_Button(string num)
-        {
-            if (needClear)
-            {
-                tbDisplayScreen.Text = "";
-                sOperatorNum = "0";
-                needClear = false;
-            }
-            if(needReset)
-            {
-                total = null;
-                needReset = false;
-            }
 
-            
-            tbDisplayScreen.Text += num;
-            sOperatorNum += num;
-            if (sOperatorNum.IndexOf(".") == -1)
-            {
-                sOperatorNum = Convert.ToDouble(sOperatorNum).ToString();
-                tbDisplayScreen.Text = sOperatorNum;//去除头部多余的0
-            }
-            canBackSpace = true;
-            OperatorClicked = false;
-        }
 
         private void btEqual_Click(object sender, EventArgs e)
         {
             OperatorClicked = false;
-            Equal(sOperator,true);
+            tbDisplayScreen.Text = CalculationType.Equal(sOperator, true);
+
         }
 
-        private void Equal(string strOperator = "+",bool isEqualSign = false)
+        Calculator CalculationType;
+        private void CalculatorEqual(string Operator = "+", bool isEqualSign = false)
         {
-            needReset = false;
-            if (OperatorClicked)
-                return;
-            OperatorClicked = true;
-            if (total == null)
-            {
-                lastOperator = strOperator;
-                total = sOperatorNum;
-                sOperatorNum = "";
-                //tbDisplayScreen.Text = "0";
-                needClear = true;
-                return;
-            }
-            if (lastOperator == "" || sOperatorNum == "")
-                return;
-            if (sOperatorNum == "0" && lastOperator == "/")
-            {
-                tbDisplayScreen.Text = "除数不能为零";
-                needClear = true;
-                needReset = true;
-                total = null; 
-                return;
-            }
-            calculate = operationFactory.createOperate(lastOperator);
-            calculate.NumberA = Convert.ToDouble(total);
-            calculate.NumberB = Convert.ToDouble(sOperatorNum);
-            if (strOperator == "*" || strOperator == "/")
-                sOperatorNum = "1";
-            else
-                sOperatorNum = "0";
-            if (isEqualSign)
-            {
-                needReset = true;
-            }
-            total = calculate.GetResult().ToString();
-            tbDisplayScreen.Text = total;
-            lastOperator = strOperator;
-            canBackSpace = false;
-            needClear = true;
+            //CalculationType = EqualFactory.createOperate(1);
+            tbDisplayScreen.Text = CalculationType.Equal(sOperator, true);
 
+        }
+
+        private void Click_Num(string num)
+        {
+            tbDisplayScreen.Text = CalculationType.Click_Num_Button(num);
         }
 
         private void bt1_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("1");
+            Click_Num("1");
         }
 
         private void bt2_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("2");
+            Click_Num("2");
         }
 
         private void bt3_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("3");
+            Click_Num("3");
         }
 
         private void bt4_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("4");
+            Click_Num("4");
         }
 
         private void bt5_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("5");
+            Click_Num("5");
         }
 
         private void bt6_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("6");
+            Click_Num("6");
         }
 
         private void bt7_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("7");
+            Click_Num("7");
         }
 
         private void bt8_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("8");
+            Click_Num("8");
         }
 
         private void bt9_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("9");
+            Click_Num("9");
         }
 
         private void bt0_Click(object sender, EventArgs e)
         {
-            Click_Num_Button("0");
-            
+            Click_Num("0");
+
         }
         private void btPlus_Click(object sender, EventArgs e)
         {
             sOperator = "+";
-            Equal(sOperator);
+            CalculatorEqual(sOperator);
         }
         private void btMinus_Click(object sender, EventArgs e)
         {
             sOperator = "-";
-            Equal(sOperator);
+            CalculatorEqual(sOperator);
         }
 
         private void btMultiply_Click(object sender, EventArgs e)
         {
             sOperator = "*";
-            Equal(sOperator);
+            CalculatorEqual(sOperator);
         }
 
         private void btDivide_Click(object sender, EventArgs e)
         {
             sOperator = "/";
-            Equal(sOperator);
+            CalculatorEqual(sOperator);
         }
 
         private void btClear_Click(object sender, EventArgs e)
@@ -286,9 +239,9 @@ namespace Calculator
 
         private void btPoint_Click(object sender, EventArgs e)
         {
-            if(sOperatorNum.IndexOf(".") == -1)
+            if (sOperatorNum.IndexOf(".") == -1)
             {
-                if(sOperatorNum.Length ==0)
+                if (sOperatorNum.Length == 0)
                 {
                     sOperatorNum += "0.";
                     tbDisplayScreen.Text = sOperatorNum;
@@ -300,5 +253,127 @@ namespace Calculator
                 }
             }
         }
+
+
+        //四则运算
+        public class SimpleOperator : Calculator
+        {
+            public override string Equal(string strOperator = "+", bool isEqualSign = false)
+            {
+                needReset = false;
+                if (OperatorClicked)
+                    return total;
+                OperatorClicked = true;
+                if (total == null)
+                {
+                    lastOperator = strOperator;
+                    total = sOperatorNum;
+                    sOperatorNum = "";
+                    //tbDisplayScreen.Text = "0";
+                    needClear = true;
+                    return total;
+                }
+                if (lastOperator == "" || sOperatorNum == "")
+                    return total;
+                if (sOperatorNum == "0" && lastOperator == "/")
+                {
+                    tbDisplayScreen.Text = "除数不能为零";
+
+                    needClear = true;
+                    needReset = true;
+                    total = null;
+                    return tbDisplayScreen.Text;
+                }
+                calculate = operationFactory.createOperate(lastOperator);
+                calculate.NumberA = Convert.ToDouble(total);
+                calculate.NumberB = Convert.ToDouble(sOperatorNum);
+                if (isEqualSign)
+                {
+                    needReset = true;
+                }
+                total = calculate.GetResult().ToString();
+                tbDisplayScreen.Text = total;
+                lastOperator = strOperator;
+                canBackSpace = false;
+                needClear = true;
+                return tbDisplayScreen.Text;
+            }
+
+            public override string Click_Num_Button(string num)
+            {
+                if (needClear)
+                {
+                    tbDisplayScreen.Text = "";
+                    sOperatorNum = "0";
+                    needClear = false;
+                }
+                if (needReset)
+                {
+                    total = null;
+                    needReset = false;
+                }
+                //tbDisplayScreen.Text += num;
+                sOperatorNum += num;
+                if (sOperatorNum.IndexOf(".") == -1)
+                {
+                    sOperatorNum = Convert.ToDouble(sOperatorNum).ToString();
+                    tbDisplayScreen.Text = sOperatorNum;//去除头部多余的0
+                }
+                canBackSpace = true;
+                OperatorClicked = false;
+                return sOperatorNum;
+            }
+        }
+
+        //表达式运算
+        public class OperationExpression : Calculator
+        {
+            public override string Equal(string strOperator = "+", bool isEqualSign = false)
+            {
+                return "未实现";
+            }
+
+            public override string Click_Num_Button(string num)
+            {
+                return "未实现";
+            }
+        }
+
+        public class EqualFactory               //处理运算的类
+        {
+            public static Calculator createOperate(int equal)
+            {
+                Calculator cal = null;
+                switch (equal)
+                {
+                    case 1:
+                        cal = new SimpleOperator();          //实例化具体的类
+                        break;
+                    case 2:
+                        cal = new OperationExpression();
+                        break;
+                }
+                return cal;
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSimpleOperator.Checked)
+            {
+                CalculationType = EqualFactory.createOperate(1);        //实例化具体的类
+                btClear_Click(sender, e);
+            }
+        }
+
+        private void rbOperationExpression_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbOperationExpression.Checked)
+            {
+                CalculationType = EqualFactory.createOperate(2);        //实例化具体的类
+                btClear_Click(sender, e);
+            }
+        }
     }
 }
+

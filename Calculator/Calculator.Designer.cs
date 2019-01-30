@@ -47,6 +47,12 @@
             this.tbDisplayScreen = new System.Windows.Forms.TextBox();
             this.btClear = new System.Windows.Forms.Button();
             this.btBackSpace = new System.Windows.Forms.Button();
+            this.btRightParenthesis = new System.Windows.Forms.Button();
+            this.btLeftParenthesis = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbOperationExpression = new System.Windows.Forms.RadioButton();
+            this.rbSimpleOperator = new System.Windows.Forms.RadioButton();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bt1
@@ -213,7 +219,7 @@
             // 
             this.tbDisplayScreen.BackColor = System.Drawing.Color.White;
             this.tbDisplayScreen.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbDisplayScreen.Location = new System.Drawing.Point(157, 72);
+            this.tbDisplayScreen.Location = new System.Drawing.Point(157, 26);
             this.tbDisplayScreen.Multiline = true;
             this.tbDisplayScreen.Name = "tbDisplayScreen";
             this.tbDisplayScreen.ReadOnly = true;
@@ -241,11 +247,68 @@
             this.btBackSpace.UseVisualStyleBackColor = true;
             this.btBackSpace.Click += new System.EventHandler(this.btBackSpace_Click);
             // 
+            // btRightParenthesis
+            // 
+            this.btRightParenthesis.Location = new System.Drawing.Point(248, 73);
+            this.btRightParenthesis.Name = "btRightParenthesis";
+            this.btRightParenthesis.Size = new System.Drawing.Size(75, 43);
+            this.btRightParenthesis.TabIndex = 21;
+            this.btRightParenthesis.Text = ")";
+            this.btRightParenthesis.UseVisualStyleBackColor = true;
+            // 
+            // btLeftParenthesis
+            // 
+            this.btLeftParenthesis.Location = new System.Drawing.Point(157, 73);
+            this.btLeftParenthesis.Name = "btLeftParenthesis";
+            this.btLeftParenthesis.Size = new System.Drawing.Size(75, 43);
+            this.btLeftParenthesis.TabIndex = 20;
+            this.btLeftParenthesis.Text = "(";
+            this.btLeftParenthesis.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbOperationExpression);
+            this.groupBox1.Controls.Add(this.rbSimpleOperator);
+            this.groupBox1.Location = new System.Drawing.Point(4, 73);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(147, 71);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "运算类型";
+            // 
+            // rbOperationExpression
+            // 
+            this.rbOperationExpression.AutoSize = true;
+            this.rbOperationExpression.Location = new System.Drawing.Point(9, 43);
+            this.rbOperationExpression.Name = "rbOperationExpression";
+            this.rbOperationExpression.Size = new System.Drawing.Size(83, 16);
+            this.rbOperationExpression.TabIndex = 1;
+            this.rbOperationExpression.TabStop = true;
+            this.rbOperationExpression.Text = "表达式运算";
+            this.rbOperationExpression.UseVisualStyleBackColor = true;
+            this.rbOperationExpression.CheckedChanged += new System.EventHandler(this.rbOperationExpression_CheckedChanged);
+            // 
+            // rbSimpleOperator
+            // 
+            this.rbSimpleOperator.AutoSize = true;
+            this.rbSimpleOperator.Checked = true;
+            this.rbSimpleOperator.Location = new System.Drawing.Point(9, 21);
+            this.rbSimpleOperator.Name = "rbSimpleOperator";
+            this.rbSimpleOperator.Size = new System.Drawing.Size(95, 16);
+            this.rbSimpleOperator.TabIndex = 0;
+            this.rbSimpleOperator.TabStop = true;
+            this.rbSimpleOperator.Text = "简易四则运算";
+            this.rbSimpleOperator.UseVisualStyleBackColor = true;
+            this.rbSimpleOperator.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 379);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btRightParenthesis);
+            this.Controls.Add(this.btLeftParenthesis);
             this.Controls.Add(this.btClear);
             this.Controls.Add(this.btBackSpace);
             this.Controls.Add(this.tbDisplayScreen);
@@ -267,6 +330,9 @@
             this.Controls.Add(this.bt1);
             this.Name = "Calculator";
             this.Text = "Caculator";
+            this.Load += new System.EventHandler(this.Calculator_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,6 +359,11 @@
         private System.Windows.Forms.TextBox tbDisplayScreen;
         private System.Windows.Forms.Button btClear;
         private System.Windows.Forms.Button btBackSpace;
+        private System.Windows.Forms.Button btRightParenthesis;
+        private System.Windows.Forms.Button btLeftParenthesis;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbOperationExpression;
+        private System.Windows.Forms.RadioButton rbSimpleOperator;
     }
 }
 
