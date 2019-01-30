@@ -41,7 +41,7 @@
             this.btDivide = new System.Windows.Forms.Button();
             this.btEqual = new System.Windows.Forms.Button();
             this.btMultiply = new System.Windows.Forms.Button();
-            this.btMinus = new System.Windows.Forms.Button();
+            this.btSub = new System.Windows.Forms.Button();
             this.btPlus = new System.Windows.Forms.Button();
             this.btPoint = new System.Windows.Forms.Button();
             this.tbDisplayScreen = new System.Windows.Forms.TextBox();
@@ -63,7 +63,6 @@
             this.bt1.TabIndex = 0;
             this.bt1.Text = "1";
             this.bt1.UseVisualStyleBackColor = true;
-            this.bt1.Click += new System.EventHandler(this.bt1_Click);
             // 
             // bt2
             // 
@@ -73,7 +72,6 @@
             this.bt2.TabIndex = 1;
             this.bt2.Text = "2";
             this.bt2.UseVisualStyleBackColor = true;
-            this.bt2.Click += new System.EventHandler(this.bt2_Click);
             // 
             // bt3
             // 
@@ -83,7 +81,6 @@
             this.bt3.TabIndex = 2;
             this.bt3.Text = "3";
             this.bt3.UseVisualStyleBackColor = true;
-            this.bt3.Click += new System.EventHandler(this.bt3_Click);
             // 
             // bt6
             // 
@@ -93,7 +90,6 @@
             this.bt6.TabIndex = 5;
             this.bt6.Text = "6";
             this.bt6.UseVisualStyleBackColor = true;
-            this.bt6.Click += new System.EventHandler(this.bt6_Click);
             // 
             // bt5
             // 
@@ -103,7 +99,6 @@
             this.bt5.TabIndex = 4;
             this.bt5.Text = "5";
             this.bt5.UseVisualStyleBackColor = true;
-            this.bt5.Click += new System.EventHandler(this.bt5_Click);
             // 
             // bt4
             // 
@@ -113,7 +108,6 @@
             this.bt4.TabIndex = 3;
             this.bt4.Text = "4";
             this.bt4.UseVisualStyleBackColor = true;
-            this.bt4.Click += new System.EventHandler(this.bt4_Click);
             // 
             // bt9
             // 
@@ -123,7 +117,6 @@
             this.bt9.TabIndex = 8;
             this.bt9.Text = "9";
             this.bt9.UseVisualStyleBackColor = true;
-            this.bt9.Click += new System.EventHandler(this.bt9_Click);
             // 
             // bt8
             // 
@@ -133,7 +126,6 @@
             this.bt8.TabIndex = 7;
             this.bt8.Text = "8";
             this.bt8.UseVisualStyleBackColor = true;
-            this.bt8.Click += new System.EventHandler(this.bt8_Click);
             // 
             // bt7
             // 
@@ -143,7 +135,6 @@
             this.bt7.TabIndex = 6;
             this.bt7.Text = "7";
             this.bt7.UseVisualStyleBackColor = true;
-            this.bt7.Click += new System.EventHandler(this.bt7_Click);
             // 
             // bt0
             // 
@@ -153,7 +144,6 @@
             this.bt0.TabIndex = 10;
             this.bt0.Text = "0";
             this.bt0.UseVisualStyleBackColor = true;
-            this.bt0.Click += new System.EventHandler(this.bt0_Click);
             // 
             // btDivide
             // 
@@ -161,9 +151,8 @@
             this.btDivide.Name = "btDivide";
             this.btDivide.Size = new System.Drawing.Size(75, 43);
             this.btDivide.TabIndex = 9;
-            this.btDivide.Text = "÷";
+            this.btDivide.Text = "/";
             this.btDivide.UseVisualStyleBackColor = true;
-            this.btDivide.Click += new System.EventHandler(this.btDivide_Click);
             // 
             // btEqual
             // 
@@ -181,19 +170,17 @@
             this.btMultiply.Name = "btMultiply";
             this.btMultiply.Size = new System.Drawing.Size(75, 43);
             this.btMultiply.TabIndex = 14;
-            this.btMultiply.Text = "×";
+            this.btMultiply.Text = "*";
             this.btMultiply.UseVisualStyleBackColor = true;
-            this.btMultiply.Click += new System.EventHandler(this.btMultiply_Click);
             // 
-            // btMinus
+            // btSub
             // 
-            this.btMinus.Location = new System.Drawing.Point(435, 191);
-            this.btMinus.Name = "btMinus";
-            this.btMinus.Size = new System.Drawing.Size(75, 43);
-            this.btMinus.TabIndex = 13;
-            this.btMinus.Text = "-";
-            this.btMinus.UseVisualStyleBackColor = true;
-            this.btMinus.Click += new System.EventHandler(this.btMinus_Click);
+            this.btSub.Location = new System.Drawing.Point(435, 191);
+            this.btSub.Name = "btSub";
+            this.btSub.Size = new System.Drawing.Size(75, 43);
+            this.btSub.TabIndex = 13;
+            this.btSub.Text = "-";
+            this.btSub.UseVisualStyleBackColor = true;
             // 
             // btPlus
             // 
@@ -203,7 +190,6 @@
             this.btPlus.TabIndex = 12;
             this.btPlus.Text = "+";
             this.btPlus.UseVisualStyleBackColor = true;
-            this.btPlus.Click += new System.EventHandler(this.btPlus_Click);
             // 
             // btPoint
             // 
@@ -233,7 +219,7 @@
             this.btClear.Name = "btClear";
             this.btClear.Size = new System.Drawing.Size(53, 43);
             this.btClear.TabIndex = 19;
-            this.btClear.Text = "CE";
+            this.btClear.Text = "C";
             this.btClear.UseVisualStyleBackColor = true;
             this.btClear.Click += new System.EventHandler(this.btClear_Click);
             // 
@@ -315,7 +301,7 @@
             this.Controls.Add(this.btPoint);
             this.Controls.Add(this.btEqual);
             this.Controls.Add(this.btMultiply);
-            this.Controls.Add(this.btMinus);
+            this.Controls.Add(this.btSub);
             this.Controls.Add(this.btPlus);
             this.Controls.Add(this.bt0);
             this.Controls.Add(this.btDivide);
@@ -353,7 +339,7 @@
         private System.Windows.Forms.Button btDivide;
         private System.Windows.Forms.Button btEqual;
         private System.Windows.Forms.Button btMultiply;
-        private System.Windows.Forms.Button btMinus;
+        private System.Windows.Forms.Button btSub;
         private System.Windows.Forms.Button btPlus;
         private System.Windows.Forms.Button btPoint;
         private System.Windows.Forms.TextBox tbDisplayScreen;

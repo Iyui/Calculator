@@ -14,6 +14,26 @@ namespace Calculator
         public Calculator()
         {
             InitializeComponent();
+            Binding();
+        }
+
+        private void Binding()
+        {
+            bt1.Click += new EventHandler(Number_button_Click);
+            bt2.Click += new EventHandler(Number_button_Click);
+            bt3.Click += new EventHandler(Number_button_Click);
+            bt4.Click += new EventHandler(Number_button_Click);
+            bt5.Click += new EventHandler(Number_button_Click);
+            bt6.Click += new EventHandler(Number_button_Click);
+            bt7.Click += new EventHandler(Number_button_Click);
+            bt8.Click += new EventHandler(Number_button_Click);
+            bt9.Click += new EventHandler(Number_button_Click);
+            bt0.Click += new EventHandler(Number_button_Click);
+
+            btPlus.Click += new EventHandler(Operator_button_Click);
+            btSub.Click += new EventHandler(Operator_button_Click);
+            btMultiply.Click += new EventHandler(Operator_button_Click);
+            btDivide.Click += new EventHandler(Operator_button_Click);
 
         }
 
@@ -131,15 +151,12 @@ namespace Calculator
         {
             OperatorClicked = false;
             tbDisplayScreen.Text = CalculationType.Equal(sOperator, true);
-
         }
 
         Calculator CalculationType;
         private void CalculatorEqual(string Operator = "+", bool isEqualSign = false)
         {
-            //CalculationType = EqualFactory.createOperate(1);
-            tbDisplayScreen.Text = CalculationType.Equal(sOperator, true);
-
+            tbDisplayScreen.Text = CalculationType.Equal(sOperator);
         }
 
         private void Click_Num(string num)
@@ -147,76 +164,16 @@ namespace Calculator
             tbDisplayScreen.Text = CalculationType.Click_Num_Button(num);
         }
 
-        private void bt1_Click(object sender, EventArgs e)
+        private void Number_button_Click(object sender, EventArgs e)
         {
-            Click_Num("1");
+            Button b = (Button)sender;
+            Click_Num(b.Text);
         }
 
-        private void bt2_Click(object sender, EventArgs e)
+        private void Operator_button_Click(object sender, EventArgs e)
         {
-            Click_Num("2");
-        }
-
-        private void bt3_Click(object sender, EventArgs e)
-        {
-            Click_Num("3");
-        }
-
-        private void bt4_Click(object sender, EventArgs e)
-        {
-            Click_Num("4");
-        }
-
-        private void bt5_Click(object sender, EventArgs e)
-        {
-            Click_Num("5");
-        }
-
-        private void bt6_Click(object sender, EventArgs e)
-        {
-            Click_Num("6");
-        }
-
-        private void bt7_Click(object sender, EventArgs e)
-        {
-            Click_Num("7");
-        }
-
-        private void bt8_Click(object sender, EventArgs e)
-        {
-            Click_Num("8");
-        }
-
-        private void bt9_Click(object sender, EventArgs e)
-        {
-            Click_Num("9");
-        }
-
-        private void bt0_Click(object sender, EventArgs e)
-        {
-            Click_Num("0");
-
-        }
-        private void btPlus_Click(object sender, EventArgs e)
-        {
-            sOperator = "+";
-            CalculatorEqual(sOperator);
-        }
-        private void btMinus_Click(object sender, EventArgs e)
-        {
-            sOperator = "-";
-            CalculatorEqual(sOperator);
-        }
-
-        private void btMultiply_Click(object sender, EventArgs e)
-        {
-            sOperator = "*";
-            CalculatorEqual(sOperator);
-        }
-
-        private void btDivide_Click(object sender, EventArgs e)
-        {
-            sOperator = "/";
+            Button b = (Button)sender;
+            sOperator = b.Text;
             CalculatorEqual(sOperator);
         }
 
@@ -254,8 +211,7 @@ namespace Calculator
             }
         }
 
-
-        //四则运算
+        //简易四则运算
         public class SimpleOperator : Calculator
         {
             public override string Equal(string strOperator = "+", bool isEqualSign = false)
