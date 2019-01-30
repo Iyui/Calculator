@@ -45,8 +45,8 @@
             this.btPlus = new System.Windows.Forms.Button();
             this.btPoint = new System.Windows.Forms.Button();
             this.tbDisplayScreen = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
+            this.btClear = new System.Windows.Forms.Button();
+            this.btBackSpace = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bt1
@@ -207,6 +207,7 @@
             this.btPoint.TabIndex = 16;
             this.btPoint.Text = ".";
             this.btPoint.UseVisualStyleBackColor = true;
+            this.btPoint.Click += new System.EventHandler(this.btPoint_Click);
             // 
             // tbDisplayScreen
             // 
@@ -220,32 +221,33 @@
             this.tbDisplayScreen.TabIndex = 17;
             this.tbDisplayScreen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button10
+            // btClear
             // 
-            this.button10.Location = new System.Drawing.Point(526, 191);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(53, 43);
-            this.button10.TabIndex = 19;
-            this.button10.Text = "CE";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.btClear.Location = new System.Drawing.Point(526, 191);
+            this.btClear.Name = "btClear";
+            this.btClear.Size = new System.Drawing.Size(53, 43);
+            this.btClear.TabIndex = 19;
+            this.btClear.Text = "CE";
+            this.btClear.UseVisualStyleBackColor = true;
+            this.btClear.Click += new System.EventHandler(this.btClear_Click);
             // 
-            // button18
+            // btBackSpace
             // 
-            this.button18.Location = new System.Drawing.Point(526, 132);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(53, 43);
-            this.button18.TabIndex = 18;
-            this.button18.Text = "←";
-            this.button18.UseVisualStyleBackColor = true;
+            this.btBackSpace.Location = new System.Drawing.Point(526, 132);
+            this.btBackSpace.Name = "btBackSpace";
+            this.btBackSpace.Size = new System.Drawing.Size(53, 43);
+            this.btBackSpace.TabIndex = 18;
+            this.btBackSpace.Text = "←";
+            this.btBackSpace.UseVisualStyleBackColor = true;
+            this.btBackSpace.Click += new System.EventHandler(this.btBackSpace_Click);
             // 
-            // Caculator
+            // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 379);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button18);
+            this.Controls.Add(this.btClear);
+            this.Controls.Add(this.btBackSpace);
             this.Controls.Add(this.tbDisplayScreen);
             this.Controls.Add(this.btPoint);
             this.Controls.Add(this.btEqual);
@@ -263,7 +265,7 @@
             this.Controls.Add(this.bt3);
             this.Controls.Add(this.bt2);
             this.Controls.Add(this.bt1);
-            this.Name = "Caculator";
+            this.Name = "Calculator";
             this.Text = "Caculator";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -289,8 +291,8 @@
         private System.Windows.Forms.Button btPlus;
         private System.Windows.Forms.Button btPoint;
         private System.Windows.Forms.TextBox tbDisplayScreen;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button btClear;
+        private System.Windows.Forms.Button btBackSpace;
     }
 }
 
