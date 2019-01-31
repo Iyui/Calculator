@@ -233,7 +233,6 @@ namespace Calculator
         //简易四则运算
         public class SimpleOperator : Calculator
         {
-
             public override string Equal(string strOperator = "+", bool isEqualSign = false)
             {
                 needReset = false;
@@ -306,14 +305,13 @@ namespace Calculator
         //表达式运算
         public class OperationExpression : Calculator
         {
-            
             public override string Equal(string strOperator = "+", bool isEqualSign = false)
             {
                 if (!isEqualSign)
                     sOperatorNum += strOperator;
                 else
                 {
-                    NoParenthesis nps = new NoParenthesis();//之后版本中用factory代替
+                    var nps = new Parenthesis();//之后版本中用factory代替
                     nps.Expression = sOperatorNum;
                     sOperatorNum = nps.CalculatePostfixExp();
                 }

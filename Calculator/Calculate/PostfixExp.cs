@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using static Calculator.Calculator;
 namespace Calculator
 {
     public class PostfixExp
@@ -47,39 +47,57 @@ namespace Calculator
             }
             return expressionList;
         }
+
+        public double CaculateElement(string Operator, double numA, double numB)
+        {
+            Calculate calculate;
+            calculate = operationFactory.createOperate(Operator);
+            calculate.NumberA = numA;
+            calculate.NumberB = numB;
+            return calculate.GetResult();
+        }
     }
 
 
-    /// <summary>
-    /// 无括号,只有先乘除后加减两个优先级
-    /// </summary>
-    public class NoParenthesis:PostfixExp
+    public class Parenthesis : PostfixExp
     {
         /// <summary>
-        /// 中序表达式list转换为后序表达式list
+        /// 中序表达式list转换为后序表达式list(有括号)
         /// </summary>
         /// <returns></returns>
         public List<string> PostfixExpList()
         {
-            var explist= ExpressionList();
+            var explist = ExpressionList();
             int count = explist.Count();
             Stack<string> stack = new Stack<string>();
             List<string> PostfixExpList = new List<string>();
-            for (int index = 0;index<count;index++)
+            for (int index = 0; index < count; index++)
             {
                 var element = explist[index];
+
                 bool isNum = double.TryParse(element, out double r);
-                if(isNum)
+                if (element == "")
+                    continue;
+                if (isNum)
                 {
                     PostfixExpList.Add(element);
-                    if (stack.Any() && (stack.Peek() == "*" || stack.Peek() == "/"))//因该类中不含括号,所以乘除为最高优先级
+                    if (stack.Any() && (stack.Peek() == "*" || stack.Peek() == "/"))
                         PostfixExpList.Add(stack.Pop());
-                }else
+                }
+                else if(!isNum && element !=")")
                 {
                     stack.Push(element);
                 }
+                else if(element == ")")
+                {
+                    while (stack.Any() && stack.Peek() != "(")
+                    {
+                        PostfixExpList.Add(stack.Pop());
+                    }
+                    stack.Pop();//弹出"("
+                }
             }
-            while(stack.Any())
+            while (stack.Any())
             {
                 PostfixExpList.Add(stack.Pop());
             }
@@ -108,14 +126,7 @@ namespace Calculator
             }
             return stack.Pop().ToString();
         }
-        
-        public double CaculateElement(string Operator, double numA, double numB)
-        {
-            Calculator.Calculate calculate;
-            calculate = Calculator.operationFactory.createOperate(Operator);
-            calculate.NumberA = numA;
-            calculate.NumberB = numB;
-            return calculate.GetResult();
-        }
+
+
     }
 }

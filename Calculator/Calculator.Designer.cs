@@ -272,7 +272,7 @@
             this.rbOperationExpression.Size = new System.Drawing.Size(83, 16);
             this.rbOperationExpression.TabIndex = 1;
             this.rbOperationExpression.TabStop = true;
-            this.rbOperationExpression.Text = "表达式运算";
+            this.rbOperationExpression.Text = "算术表达式";
             this.rbOperationExpression.UseVisualStyleBackColor = true;
             this.rbOperationExpression.CheckedChanged += new System.EventHandler(this.rbOperationExpression_CheckedChanged);
             // 
