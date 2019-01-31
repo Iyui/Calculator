@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
 namespace Calculator
 {
     public partial class Calculator : Form
@@ -48,7 +47,7 @@ namespace Calculator
         private void Calculator_Load(object sender, EventArgs e)
         {
             //CalculationType = EqualFactory.createOperate(1);
-            radioButton1_CheckedChanged(sender, e);
+            CalculationType = EqualFactory.createOperate(1);
         }
 
         public virtual string Equal(string strOperator = "+", bool isEqualSign = false) { return ""; }
@@ -116,6 +115,11 @@ namespace Calculator
                 double Result = 0;
                 if (NumberB != 0)
                     Result = NumberA / NumberB;
+                else
+                {
+                    MessageBox.Show("除数不能为零");
+                    return 0;
+                }
                 return Result;
             }
         }
@@ -199,6 +203,7 @@ namespace Calculator
             needClear = true;
         }
 
+        //退格键
         private void btBackSpace_Click(object sender, EventArgs e)
         {
             if (sOperatorNum.Length > 0 && canBackSpace)
@@ -228,6 +233,7 @@ namespace Calculator
         //简易四则运算
         public class SimpleOperator : Calculator
         {
+
             public override string Equal(string strOperator = "+", bool isEqualSign = false)
             {
                 needReset = false;
@@ -300,15 +306,23 @@ namespace Calculator
         //表达式运算
         public class OperationExpression : Calculator
         {
-
-            public override string Equal(string strOperator = "+", bool isEqualSign = false)//未实现
+            
+            public override string Equal(string strOperator = "+", bool isEqualSign = false)
             {
-                sOperatorNum += strOperator;
+                if (!isEqualSign)
+                    sOperatorNum += strOperator;
+                else
+                {
+                    NoParenthesis nps = new NoParenthesis();//之后版本中用factory代替
+                    nps.Expression = sOperatorNum;
+                    sOperatorNum = nps.CalculatePostfixExp();
+                }
                 return sOperatorNum;
             }
 
-            public override string Click_Num_Button(string num)//未实现
+            public override string Click_Num_Button(string num)
             {
+                canBackSpace = true;
                 sOperatorNum += num;
                 return sOperatorNum;
             }
@@ -338,7 +352,7 @@ namespace Calculator
             {
                 btLeftParenthesis.Visible = false;
                 btRightParenthesis.Visible = false;
-                CalculationType = EqualFactory.createOperate(1);       
+                CalculationType = EqualFactory.createOperate(1);
                 btClear_Click(sender, e);
             }
         }
@@ -349,7 +363,7 @@ namespace Calculator
             {
                 btLeftParenthesis.Visible = true;
                 btRightParenthesis.Visible = true;
-                CalculationType = EqualFactory.createOperate(2);        
+                CalculationType = EqualFactory.createOperate(2);
                 btClear_Click(sender, e);
             }
         }
