@@ -57,7 +57,7 @@
             // 
             // bt1
             // 
-            this.bt1.Location = new System.Drawing.Point(157, 250);
+            this.bt1.Location = new System.Drawing.Point(157, 323);
             this.bt1.Name = "bt1";
             this.bt1.Size = new System.Drawing.Size(75, 43);
             this.bt1.TabIndex = 0;
@@ -66,7 +66,7 @@
             // 
             // bt2
             // 
-            this.bt2.Location = new System.Drawing.Point(248, 250);
+            this.bt2.Location = new System.Drawing.Point(248, 323);
             this.bt2.Name = "bt2";
             this.bt2.Size = new System.Drawing.Size(75, 43);
             this.bt2.TabIndex = 1;
@@ -75,7 +75,7 @@
             // 
             // bt3
             // 
-            this.bt3.Location = new System.Drawing.Point(341, 250);
+            this.bt3.Location = new System.Drawing.Point(341, 323);
             this.bt3.Name = "bt3";
             this.bt3.Size = new System.Drawing.Size(75, 43);
             this.bt3.TabIndex = 2;
@@ -84,7 +84,7 @@
             // 
             // bt6
             // 
-            this.bt6.Location = new System.Drawing.Point(341, 191);
+            this.bt6.Location = new System.Drawing.Point(341, 264);
             this.bt6.Name = "bt6";
             this.bt6.Size = new System.Drawing.Size(75, 43);
             this.bt6.TabIndex = 5;
@@ -93,7 +93,7 @@
             // 
             // bt5
             // 
-            this.bt5.Location = new System.Drawing.Point(248, 191);
+            this.bt5.Location = new System.Drawing.Point(248, 264);
             this.bt5.Name = "bt5";
             this.bt5.Size = new System.Drawing.Size(75, 43);
             this.bt5.TabIndex = 4;
@@ -102,7 +102,7 @@
             // 
             // bt4
             // 
-            this.bt4.Location = new System.Drawing.Point(157, 191);
+            this.bt4.Location = new System.Drawing.Point(157, 264);
             this.bt4.Name = "bt4";
             this.bt4.Size = new System.Drawing.Size(75, 43);
             this.bt4.TabIndex = 3;
@@ -111,7 +111,7 @@
             // 
             // bt9
             // 
-            this.bt9.Location = new System.Drawing.Point(341, 132);
+            this.bt9.Location = new System.Drawing.Point(341, 205);
             this.bt9.Name = "bt9";
             this.bt9.Size = new System.Drawing.Size(75, 43);
             this.bt9.TabIndex = 8;
@@ -120,7 +120,7 @@
             // 
             // bt8
             // 
-            this.bt8.Location = new System.Drawing.Point(248, 132);
+            this.bt8.Location = new System.Drawing.Point(248, 205);
             this.bt8.Name = "bt8";
             this.bt8.Size = new System.Drawing.Size(75, 43);
             this.bt8.TabIndex = 7;
@@ -129,7 +129,7 @@
             // 
             // bt7
             // 
-            this.bt7.Location = new System.Drawing.Point(157, 132);
+            this.bt7.Location = new System.Drawing.Point(157, 205);
             this.bt7.Name = "bt7";
             this.bt7.Size = new System.Drawing.Size(75, 43);
             this.bt7.TabIndex = 6;
@@ -138,7 +138,7 @@
             // 
             // bt0
             // 
-            this.bt0.Location = new System.Drawing.Point(157, 308);
+            this.bt0.Location = new System.Drawing.Point(157, 381);
             this.bt0.Name = "bt0";
             this.bt0.Size = new System.Drawing.Size(166, 43);
             this.bt0.TabIndex = 10;
@@ -147,7 +147,7 @@
             // 
             // btDivide
             // 
-            this.btDivide.Location = new System.Drawing.Point(435, 308);
+            this.btDivide.Location = new System.Drawing.Point(435, 381);
             this.btDivide.Name = "btDivide";
             this.btDivide.Size = new System.Drawing.Size(75, 43);
             this.btDivide.TabIndex = 9;
@@ -156,7 +156,7 @@
             // 
             // btEqual
             // 
-            this.btEqual.Location = new System.Drawing.Point(526, 250);
+            this.btEqual.Location = new System.Drawing.Point(526, 323);
             this.btEqual.Name = "btEqual";
             this.btEqual.Size = new System.Drawing.Size(53, 101);
             this.btEqual.TabIndex = 15;
@@ -166,7 +166,7 @@
             // 
             // btMultiply
             // 
-            this.btMultiply.Location = new System.Drawing.Point(435, 250);
+            this.btMultiply.Location = new System.Drawing.Point(435, 323);
             this.btMultiply.Name = "btMultiply";
             this.btMultiply.Size = new System.Drawing.Size(75, 43);
             this.btMultiply.TabIndex = 14;
@@ -175,7 +175,7 @@
             // 
             // btSub
             // 
-            this.btSub.Location = new System.Drawing.Point(435, 191);
+            this.btSub.Location = new System.Drawing.Point(435, 264);
             this.btSub.Name = "btSub";
             this.btSub.Size = new System.Drawing.Size(75, 43);
             this.btSub.TabIndex = 13;
@@ -184,7 +184,7 @@
             // 
             // btPlus
             // 
-            this.btPlus.Location = new System.Drawing.Point(435, 132);
+            this.btPlus.Location = new System.Drawing.Point(435, 205);
             this.btPlus.Name = "btPlus";
             this.btPlus.Size = new System.Drawing.Size(75, 43);
             this.btPlus.TabIndex = 12;
@@ -193,7 +193,7 @@
             // 
             // btPoint
             // 
-            this.btPoint.Location = new System.Drawing.Point(341, 308);
+            this.btPoint.Location = new System.Drawing.Point(341, 381);
             this.btPoint.Name = "btPoint";
             this.btPoint.Size = new System.Drawing.Size(75, 43);
             this.btPoint.TabIndex = 16;
@@ -205,17 +205,17 @@
             // 
             this.tbDisplayScreen.BackColor = System.Drawing.Color.White;
             this.tbDisplayScreen.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbDisplayScreen.Location = new System.Drawing.Point(157, 26);
+            this.tbDisplayScreen.Location = new System.Drawing.Point(157, 88);
             this.tbDisplayScreen.Multiline = true;
             this.tbDisplayScreen.Name = "tbDisplayScreen";
             this.tbDisplayScreen.ReadOnly = true;
-            this.tbDisplayScreen.Size = new System.Drawing.Size(422, 41);
+            this.tbDisplayScreen.Size = new System.Drawing.Size(422, 50);
             this.tbDisplayScreen.TabIndex = 17;
             this.tbDisplayScreen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btClear
             // 
-            this.btClear.Location = new System.Drawing.Point(526, 191);
+            this.btClear.Location = new System.Drawing.Point(526, 264);
             this.btClear.Name = "btClear";
             this.btClear.Size = new System.Drawing.Size(53, 43);
             this.btClear.TabIndex = 19;
@@ -225,7 +225,7 @@
             // 
             // btBackSpace
             // 
-            this.btBackSpace.Location = new System.Drawing.Point(526, 132);
+            this.btBackSpace.Location = new System.Drawing.Point(526, 205);
             this.btBackSpace.Name = "btBackSpace";
             this.btBackSpace.Size = new System.Drawing.Size(53, 43);
             this.btBackSpace.TabIndex = 18;
@@ -235,7 +235,7 @@
             // 
             // btRightParenthesis
             // 
-            this.btRightParenthesis.Location = new System.Drawing.Point(248, 73);
+            this.btRightParenthesis.Location = new System.Drawing.Point(248, 156);
             this.btRightParenthesis.Name = "btRightParenthesis";
             this.btRightParenthesis.Size = new System.Drawing.Size(75, 43);
             this.btRightParenthesis.TabIndex = 21;
@@ -245,7 +245,7 @@
             // 
             // btLeftParenthesis
             // 
-            this.btLeftParenthesis.Location = new System.Drawing.Point(157, 73);
+            this.btLeftParenthesis.Location = new System.Drawing.Point(157, 156);
             this.btLeftParenthesis.Name = "btLeftParenthesis";
             this.btLeftParenthesis.Size = new System.Drawing.Size(75, 43);
             this.btLeftParenthesis.TabIndex = 20;
@@ -287,13 +287,13 @@
             this.rbSimpleOperator.TabStop = true;
             this.rbSimpleOperator.Text = "简易四则运算";
             this.rbSimpleOperator.UseVisualStyleBackColor = true;
-            this.rbSimpleOperator.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rbSimpleOperator.CheckedChanged += new System.EventHandler(this.rbSimpleOperator_CheckedChanged);
             // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 379);
+            this.ClientSize = new System.Drawing.Size(772, 456);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btRightParenthesis);
             this.Controls.Add(this.btLeftParenthesis);

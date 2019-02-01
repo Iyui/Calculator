@@ -53,6 +53,9 @@ namespace Calculator
         public virtual string Equal(string strOperator = "+", bool isEqualSign = false) { return ""; }
         public virtual string Click_Num_Button(string num) { return null; }
 
+        public virtual string SetPoint() { return null; }
+
+        public int strStrCount(string S,string s) {return System.Text.RegularExpressions.Regex.Matches(S, "["+s+"]").Count; }
         public class Calculate
         {
             public double NumberA { get; set; } = 0;
@@ -159,6 +162,11 @@ namespace Calculator
         bool needReset = false;     //按"="后输入为数字时重新开始计算
         static bool canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
         bool OperatorClicked = false; //多次按加减乘除无效
+        static string RightInput = "";
+        HashSet<string> OperatorHs = new HashSet<string> {"+", "-", "*", "/", "(", ")" };
+        HashSet<string> nphs = new HashSet<string> { "+", "-", "*", "/" };
+        HashSet<string> norightphs = new HashSet<string> { "+", "-", "*", "/", "(" };
+        HashSet<string> noleftphs = new HashSet<string> { "+", "-", "*", "/", ")" };
         Calculate calculate;
         #endregion
 
@@ -209,30 +217,54 @@ namespace Calculator
             if (sOperatorNum.Length > 0 && canBackSpace)
             {
                 sOperatorNum = sOperatorNum.Substring(0, sOperatorNum.Length - 1);
+                if (RightInput.Length>0)
+                    RightInput = RightInput.Substring(0, RightInput.Length - 1);
                 tbDisplayScreen.Text = sOperatorNum;
+                var lastPointIndex = tbDisplayScreen.Text.LastIndexOf('.');
+                var lastOperatorIndex = 0;
+                foreach(var s in OperatorHs)
+                {
+                    lastOperatorIndex = Math.Max(lastOperatorIndex, tbDisplayScreen.Text.LastIndexOf(s));
+                }
+                if (lastOperatorIndex == tbDisplayScreen.Text.Length-1)
+                {
+                    RightInput = "";
+                }
+                else
+                {
+                    RightInput = sOperatorNum.Substring(lastOperatorIndex, sOperatorNum.Length - lastOperatorIndex);
+                }
+
+                //var lastOperatorIndex = tbDisplayScreen.Text.IndexOf(, lastPointIndex);
+                //RightInput
             }
+            
         }
         //小数点
         private void btPoint_Click(object sender, EventArgs e)
         {
-            if (sOperatorNum.IndexOf(".") == -1)
-            {
-                if (sOperatorNum.Length == 0)
-                {
-                    sOperatorNum += "0.";
-                    tbDisplayScreen.Text = sOperatorNum;
-                }
-                else
-                {
-                    sOperatorNum += ".";
-                    tbDisplayScreen.Text = sOperatorNum;
-                }
-            }
+            tbDisplayScreen.Text = CalculationType.SetPoint();
         }
         #region 简易四则运算
         //简易四则运算
         public class SimpleOperator : Calculator
         {
+            public override string SetPoint()
+            {
+                if (sOperatorNum.IndexOf(".") == -1)
+                {
+                    if (sOperatorNum.Length == 0)
+                    {
+                        sOperatorNum += "0.";
+                    }
+                    else
+                    {
+                        sOperatorNum += ".";       
+                    }
+                }
+                return sOperatorNum;
+            }
+
             public override string Equal(string strOperator = "+", bool isEqualSign = false)
             {
                 needReset = false;
@@ -260,13 +292,16 @@ namespace Calculator
                     return tbDisplayScreen.Text;
                 }
                 calculate = operationFactory.createOperate(lastOperator);
+
                 calculate.NumberA = Convert.ToDouble(total);
                 calculate.NumberB = Convert.ToDouble(sOperatorNum);
+                total = calculate.GetResult().ToString();
+
                 if (isEqualSign)
                 {
                     needReset = true;
                 }
-                total = calculate.GetResult().ToString();
+
                 tbDisplayScreen.Text = total;
                 lastOperator = strOperator;
                 canBackSpace = false;
@@ -291,6 +326,7 @@ namespace Calculator
                 sOperatorNum += num;
                 if (sOperatorNum.IndexOf(".") == -1)
                 {
+
                     sOperatorNum = Convert.ToDouble(sOperatorNum).ToString();
                     tbDisplayScreen.Text = sOperatorNum;//去除头部多余的0
                 }
@@ -305,24 +341,115 @@ namespace Calculator
         //表达式运算
         public class OperationExpression : Calculator
         {
+            
             public override string Equal(string strOperator = "+", bool isEqualSign = false)
             {
                 if (!isEqualSign)
-                    sOperatorNum += strOperator;
+                {
+                    if (canAddOperator(strOperator))
+                    {
+                        sOperatorNum += strOperator;
+                        RightInput = "";
+                    }
+                }
                 else
                 {
-                    var nps = new Parenthesis();//之后版本中用factory代替
-                    nps.Expression = sOperatorNum;
-                    sOperatorNum = nps.CalculatePostfixExp();
+                    if (!isExpressionHolds())
+                        return sOperatorNum;
+                    var pts = new Parenthesis();//之后版本中用factory代替
+                    pts.Expression = sOperatorNum;
+                    sOperatorNum = pts.CalculatePostfixExp();
                 }
                 return sOperatorNum;
             }
 
+            public override string SetPoint()
+            {
+                if (RightInput.IndexOf(".") == -1)
+                {
+                    if (RightInput.Length != 0)
+                    {
+                        RightInput += ".";
+                        sOperatorNum += ".";
+                    }
+                }
+                return sOperatorNum;
+            }
+
+
             public override string Click_Num_Button(string num)
             {
+                RightInput += num;
                 canBackSpace = true;
                 sOperatorNum += num;
                 return sOperatorNum;
+            }
+
+            /// <summary>
+            /// 运算符是否能够继续添加
+            /// </summary>
+            /// <param name="strOperator"></param>
+            /// <returns></returns>
+            private bool canAddOperator(string strOperator)
+            {
+                var len = sOperatorNum.Length;
+                if (len == 0)//第一个运算符只能添加左括号
+                {
+                    if (strOperator == "(")
+                        return true;
+                    return false;
+                }
+                var c = sOperatorNum[len - 1];
+                if (c == '.')
+                {
+                    sOperatorNum = sOperatorNum.Substring(0, sOperatorNum.Length - 1);
+                    RightInput = RightInput.Substring(0, RightInput.Length - 1);
+                }
+                if (strOperator == ")" && !norightphs.Contains(c.ToString())) //右括号只能添加在数字或右括号右边且个数不能大于左括号
+                {
+                    var leftParenthesis = strStrCount(sOperatorNum, "(");
+                    var rightParenthesis = strStrCount(sOperatorNum, ")");
+                    if (leftParenthesis <= rightParenthesis)//左括号个数小于右括号个数不再添加右括号
+                        return false;
+                    return true;
+                }
+                else if (strOperator == "(" && norightphs.Contains(c.ToString()))//左括号可以添加在非数字和非右括号的右边
+                    return true;
+                else if ((!norightphs.Contains(c.ToString())) && nphs.Contains(strOperator)) //加减乘除符号可以添加在数字及右括号右边
+                    return true;
+                return false;
+            }
+
+            /// <summary>
+            /// 表达式成立
+            /// </summary>
+            /// <returns></returns>
+            private bool isExpressionHolds()
+            {
+                var len = sOperatorNum.Length;
+                char c;
+                if (len > 0)
+                {
+                    c = sOperatorNum[len - 1];
+                }
+                else
+                {
+                    return false;
+                }
+                if(!noleftphs.Contains(c.ToString())) //表达式最后为右括号或数字
+                {
+                    var leftParenthesis = strStrCount(sOperatorNum, "(");
+                    var rightParenthesis = strStrCount(sOperatorNum, ")");
+                    if (leftParenthesis > rightParenthesis)//若右括号数量少于左括号数量,自动补全
+                    {
+                        var dif = leftParenthesis - rightParenthesis;
+                        for (int i = 0; i < dif; i++)
+                            sOperatorNum += ')';
+                    }
+                    return true;
+                }else
+                    return false;
+
             }
         }
         #endregion
@@ -337,14 +464,14 @@ namespace Calculator
                         cal = new SimpleOperator();          //实例化具体的类
                         break;
                     case 2:
-                        cal = new OperationExpression();
+                        cal = new OperationExpression();//算术表达式
                         break;
                 }
                 return cal;
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void rbSimpleOperator_CheckedChanged(object sender, EventArgs e)
         {
             if (rbSimpleOperator.Checked)
             {
