@@ -31,10 +31,10 @@ namespace Calculator
             {
                 char c = Expression[index];
                 bool isNum = int.TryParse(c.ToString(), out int result);
-                if (isNum || c =='.')//分割数字与运算符
+                if (isNum || c == '.')//分割数字与运算符
                 {
                     sElement += c;
-                    if(index !=length-1)
+                    if (index != length - 1)
                         continue;
                 }
                 else
@@ -84,11 +84,11 @@ namespace Calculator
                     if (stack.Any() && (stack.Peek() == "*" || stack.Peek() == "/"))
                         PostfixExpList.Add(stack.Pop());
                 }
-                else if(!isNum && element !=")")
+                else if (!isNum && element != ")")
                 {
                     stack.Push(element);
                 }
-                else if(element == ")")
+                else if (element == ")")
                 {
                     while (stack.Any() && stack.Peek() != "(")
                     {

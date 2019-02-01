@@ -43,7 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculate\OperationExpression.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Calculate\PostfixExp.cs" />
+    <Compile Include="Calculate\SimpleOperator.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Calculator.cs">
       <SubType>Form</SubType>
     </Compile>

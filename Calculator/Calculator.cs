@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -10,18 +11,74 @@ namespace Calculator
 {
     public partial class Calculator : Form
     {
+        #region 变量
+        static string _total = null;
+        static string _sOperatorNum;                                  //用来储存输入的每个数
+        static bool _canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
+        static string _RightInput = "";
+        HashSet<string> OperatorHs = new HashSet<string> { "+", "-", "*", "/", "(", ")" };
+
+        #endregion
+
+        public string total
+        {
+            get => _total;
+            set => _total = value;
+        }
+        /// <summary>
+        ///  用来储存输入的每个数
+        /// </summary>
+        public string sOperatorNum
+        {
+            get => _sOperatorNum;
+            set => _sOperatorNum=value;
+        }
+        /// <summary>
+        /// 用来辨别进行何种运算,与显示框tbDisplayScreen.Text相同
+        /// </summary>
+        public string sOperator { get; set; } = "";
+        public string lastOperator { get; set; } = "";
+
+        /// <summary>
+        /// "C"键清除信息
+        /// </summary>
+        public bool needClear { get; set; } = false;
+
+        /// <summary>
+        /// 按"="后输入为数字时重新开始计算
+        /// </summary>
+        public bool needReset { get; set; } = false;
+
+        /// <summary>
+        /// 只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
+        /// </summary>
+        public bool canBackSpace
+        {
+            get => _canBackSpace;
+            set => _canBackSpace = value;
+        }
+        /// <summary>
+        /// 多次按加减乘除无效
+        /// </summary>
+        public bool OperatorClicked { get; set; } = false;
+        public string RightInput
+        {
+            get => _RightInput;
+            set => _RightInput = value;
+        }
+
         public Calculator()
         {
             InitializeComponent();
             Binding();
         }
 
-
         /// <summary>
         /// 按键绑定事件
         /// </summary>
         private void Binding()
         {
+            
             bt1.Click += new EventHandler(Number_button_Click);
             bt2.Click += new EventHandler(Number_button_Click);
             bt3.Click += new EventHandler(Number_button_Click);
@@ -153,22 +210,7 @@ namespace Calculator
             }
         }
 
-        #region 变量
-        static string total = null;
-        static string sOperatorNum;                                  //用来储存输入的每个数
-        string sOperator = "";                                 //用来辨别进行何种运算,与显示框tbDisplayScreen.Text相同
-        string lastOperator = "";
-        bool needClear = false;     //"CE"键清除信息
-        bool needReset = false;     //按"="后输入为数字时重新开始计算
-        static bool canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
-        bool OperatorClicked = false; //多次按加减乘除无效
-        static string RightInput = "";
-        HashSet<string> OperatorHs = new HashSet<string> {"+", "-", "*", "/", "(", ")" };
-        HashSet<string> nphs = new HashSet<string> { "+", "-", "*", "/" };
-        HashSet<string> norightphs = new HashSet<string> { "+", "-", "*", "/", "(" };
-        HashSet<string> noleftphs = new HashSet<string> { "+", "-", "*", "/", ")" };
-        Calculate calculate;
-        #endregion
+        
 
         private void btEqual_Click(object sender, EventArgs e)
         {
@@ -245,214 +287,8 @@ namespace Calculator
         {
             tbDisplayScreen.Text = CalculationType.SetPoint();
         }
-        #region 简易四则运算
-        //简易四则运算
-        public class SimpleOperator : Calculator
-        {
-            public override string SetPoint()
-            {
-                if (sOperatorNum.IndexOf(".") == -1)
-                {
-                    if (sOperatorNum.Length == 0)
-                    {
-                        sOperatorNum += "0.";
-                    }
-                    else
-                    {
-                        sOperatorNum += ".";       
-                    }
-                }
-                return sOperatorNum;
-            }
-
-            public override string Equal(string strOperator = "+", bool isEqualSign = false)
-            {
-                needReset = false;
-                if (OperatorClicked)
-                    return total;
-                OperatorClicked = true;
-                if (total == null)
-                {
-                    lastOperator = strOperator;
-                    total = sOperatorNum;
-                    sOperatorNum = "";
-                    //tbDisplayScreen.Text = "0";
-                    needClear = true;
-                    return total;
-                }
-                if (lastOperator == "" || sOperatorNum == "")
-                    return total;
-                if (sOperatorNum == "0" && lastOperator == "/")
-                {
-                    tbDisplayScreen.Text = "除数不能为零";
-
-                    needClear = true;
-                    needReset = true;
-                    total = null;
-                    return tbDisplayScreen.Text;
-                }
-                calculate = operationFactory.createOperate(lastOperator);
-
-                calculate.NumberA = Convert.ToDouble(total);
-                calculate.NumberB = Convert.ToDouble(sOperatorNum);
-                total = calculate.GetResult().ToString();
-
-                if (isEqualSign)
-                {
-                    needReset = true;
-                }
-
-                tbDisplayScreen.Text = total;
-                lastOperator = strOperator;
-                canBackSpace = false;
-                needClear = true;
-                return tbDisplayScreen.Text;
-            }
-
-            public override string Click_Num_Button(string num)
-            {
-                if (needClear)
-                {
-                    tbDisplayScreen.Text = "";
-                    sOperatorNum = "0";
-                    needClear = false;
-                }
-                if (needReset)
-                {
-                    total = null;
-                    needReset = false;
-                }
-                //tbDisplayScreen.Text += num;
-                sOperatorNum += num;
-                if (sOperatorNum.IndexOf(".") == -1)
-                {
-
-                    sOperatorNum = Convert.ToDouble(sOperatorNum).ToString();
-                    tbDisplayScreen.Text = sOperatorNum;//去除头部多余的0
-                }
-                canBackSpace = true;
-                OperatorClicked = false;
-                return sOperatorNum;
-            }
-        }
-        #endregion
-
-        #region 表达式运算
-        //表达式运算
-        public class OperationExpression : Calculator
-        {
-            
-            public override string Equal(string strOperator = "+", bool isEqualSign = false)
-            {
-                if (!isEqualSign)
-                {
-                    if (canAddOperator(strOperator))
-                    {
-                        sOperatorNum += strOperator;
-                        RightInput = "";
-                    }
-                }
-                else
-                {
-                    if (!isExpressionHolds())
-                        return sOperatorNum;
-                    var pts = new Parenthesis();//之后版本中用factory代替
-                    pts.Expression = sOperatorNum;
-                    sOperatorNum = pts.CalculatePostfixExp();
-                }
-                return sOperatorNum;
-            }
-
-            public override string SetPoint()
-            {
-                if (RightInput.IndexOf(".") == -1)
-                {
-                    if (RightInput.Length != 0)
-                    {
-                        RightInput += ".";
-                        sOperatorNum += ".";
-                    }
-                }
-                return sOperatorNum;
-            }
-
-
-            public override string Click_Num_Button(string num)
-            {
-                RightInput += num;
-                canBackSpace = true;
-                sOperatorNum += num;
-                return sOperatorNum;
-            }
-
-            /// <summary>
-            /// 运算符是否能够继续添加
-            /// </summary>
-            /// <param name="strOperator"></param>
-            /// <returns></returns>
-            private bool canAddOperator(string strOperator)
-            {
-                var len = sOperatorNum.Length;
-                if (len == 0)//第一个运算符只能添加左括号
-                {
-                    if (strOperator == "(")
-                        return true;
-                    return false;
-                }
-                var c = sOperatorNum[len - 1];
-                if (c == '.')
-                {
-                    sOperatorNum = sOperatorNum.Substring(0, sOperatorNum.Length - 1);
-                    RightInput = RightInput.Substring(0, RightInput.Length - 1);
-                }
-                if (strOperator == ")" && !norightphs.Contains(c.ToString())) //右括号只能添加在数字或右括号右边且个数不能大于左括号
-                {
-                    var leftParenthesis = strStrCount(sOperatorNum, "(");
-                    var rightParenthesis = strStrCount(sOperatorNum, ")");
-                    if (leftParenthesis <= rightParenthesis)//左括号个数小于右括号个数不再添加右括号
-                        return false;
-                    return true;
-                }
-                else if (strOperator == "(" && norightphs.Contains(c.ToString()))//左括号可以添加在非数字和非右括号的右边
-                    return true;
-                else if ((!norightphs.Contains(c.ToString())) && nphs.Contains(strOperator)) //加减乘除符号可以添加在数字及右括号右边
-                    return true;
-                return false;
-            }
-
-            /// <summary>
-            /// 表达式成立
-            /// </summary>
-            /// <returns></returns>
-            private bool isExpressionHolds()
-            {
-                var len = sOperatorNum.Length;
-                char c;
-                if (len > 0)
-                {
-                    c = sOperatorNum[len - 1];
-                }
-                else
-                {
-                    return false;
-                }
-                if(!noleftphs.Contains(c.ToString())) //表达式最后为右括号或数字
-                {
-                    var leftParenthesis = strStrCount(sOperatorNum, "(");
-                    var rightParenthesis = strStrCount(sOperatorNum, ")");
-                    if (leftParenthesis > rightParenthesis)//若右括号数量少于左括号数量,自动补全
-                    {
-                        var dif = leftParenthesis - rightParenthesis;
-                        for (int i = 0; i < dif; i++)
-                            sOperatorNum += ')';
-                    }
-                    return true;
-                }else
-                    return false;
-
-            }
-        }
-        #endregion
+       
+       
         public class EqualFactory               //处理运算的类
         {
             public static Calculator createOperate(int equal)
