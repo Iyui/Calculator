@@ -52,6 +52,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbOperationExpression = new System.Windows.Forms.RadioButton();
             this.rbSimpleOperator = new System.Windows.Forms.RadioButton();
+            this.btSqrt = new System.Windows.Forms.Button();
+            this.btPower = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -289,11 +292,41 @@
             this.rbSimpleOperator.UseVisualStyleBackColor = true;
             this.rbSimpleOperator.CheckedChanged += new System.EventHandler(this.rbSimpleOperator_CheckedChanged);
             // 
+            // btSqrt
+            // 
+            this.btSqrt.Location = new System.Drawing.Point(433, 156);
+            this.btSqrt.Name = "btSqrt";
+            this.btSqrt.Size = new System.Drawing.Size(75, 43);
+            this.btSqrt.TabIndex = 24;
+            this.btSqrt.Text = "√";
+            this.btSqrt.UseVisualStyleBackColor = true;
+            // 
+            // btPower
+            // 
+            this.btPower.Location = new System.Drawing.Point(342, 156);
+            this.btPower.Name = "btPower";
+            this.btPower.Size = new System.Drawing.Size(75, 43);
+            this.btPower.TabIndex = 23;
+            this.btPower.Text = "^";
+            this.btPower.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(526, 156);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 43);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "!";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 456);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btSqrt);
+            this.Controls.Add(this.btPower);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btRightParenthesis);
             this.Controls.Add(this.btLeftParenthesis);
@@ -352,6 +385,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbOperationExpression;
         private System.Windows.Forms.RadioButton rbSimpleOperator;
+        private System.Windows.Forms.Button btSqrt;
+        private System.Windows.Forms.Button btPower;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -107,6 +107,8 @@ namespace Calculator
             btSub.Click += new EventHandler(Operator_button_Click);
             btMultiply.Click += new EventHandler(Operator_button_Click);
             btDivide.Click += new EventHandler(Operator_button_Click);
+            btPower.Click += new EventHandler(Operator_button_Click);
+            btSqrt.Click += new EventHandler(Operator_button_Click);
 
             btLeftParenthesis.Click += new EventHandler(Operator_button_Click);
             btRightParenthesis.Click += new EventHandler(Operator_button_Click);
@@ -134,7 +136,7 @@ namespace Calculator
                 return Result;
             }
         }
-        #region 加减乘除类
+        #region 简单算术类
         /// <summary>
         /// 加法
         /// </summary>
@@ -193,6 +195,41 @@ namespace Calculator
                 return Result;
             }
         }
+
+        /// <summary>
+        /// 幂x^y,先输入x
+        /// </summary>
+        public class CalculatePow : Calculate
+        {
+            public override double GetResult()
+            {
+                double Result = 0;
+                Result = Math.Pow(NumberA, NumberB);
+                return Result;
+            }
+        }
+
+        /// <summary>
+        /// 开x的y次方根,y√x,先输入x
+        /// </summary>
+        public class CalculateSqrt : Calculate
+        {
+            public override double GetResult()
+            {
+                double Result = 0;
+                if (NumberB != 0)
+                {
+                    NumberB = 1 / NumberB;
+                    Result = Math.Pow(NumberA, NumberB); ;
+                }
+                else
+                {
+                    MessageBox.Show("根指数不能为零");
+                    return 0;
+                }
+                return Result;
+            }
+        }
         #endregion
 
         public class operationFactory               //处理运算符的类
@@ -214,6 +251,12 @@ namespace Calculator
                         break;
                     case "/":
                         cal = new CalculateDiv();
+                        break;
+                    case "^":
+                        cal = new CalculatePow();
+                        break;
+                    case "√":
+                        cal = new CalculateSqrt();
                         break;
                 }
                 return cal;

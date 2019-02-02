@@ -8,17 +8,19 @@ namespace Calculator
     #region 表达式运算
     public class OperationExpression : Calculator
     {
-        HashSet<string> OperatorHs = new HashSet<string> { "+", "-", "*", "/", "(", ")" };
-        HashSet<string> nphs = new HashSet<string> { "+", "-", "*", "/" };
-        HashSet<string> norightphs = new HashSet<string> { "+", "-", "*", "/", "(" };
-        HashSet<string> noleftphs = new HashSet<string> { "+", "-", "*", "/", ")" };
+        HashSet<string> OperatorHs = new HashSet<string> { "+", "-", "*", "/", "(", ")" , "^", "√" };
+        HashSet<string> nphs = new HashSet<string> { "+", "-", "*", "/", "^", "√" };
+        HashSet<string> norightphs = new HashSet<string> { "+", "-", "*", "/", "(" ,"^", "√" };
+        HashSet<string> noleftphs = new HashSet<string> { "+", "-", "*", "/", ")" , "^", "√" };
         public override string Equal(string strOperator = "+", bool isEqualSign = false)
         {
             if (!isEqualSign)
             {
                 if (canAddOperator(strOperator))
                 {
-                    while (RightInput.IndexOf('.') != -1 && sOperatorNum[sOperatorNum.Length - 1] == '0'|| RightInput[RightInput.Length - 1] == '.')//删除多余的"."和"0"
+                    while (RightInput.Length>0&& (RightInput.IndexOf('.') != -1 
+                        && sOperatorNum[sOperatorNum.Length - 1] == '0'
+                        || RightInput[RightInput.Length - 1] == '.'))//删除多余的"."和"0"
                     {
                         sOperatorNum = sOperatorNum.Substring(0, sOperatorNum.Length - 1);
                         RightInput = RightInput.Substring(0, RightInput.Length - 1);
@@ -77,7 +79,7 @@ namespace Calculator
             var len = sOperatorNum.Length;
             if (len == 0)//第一个运算符只能添加左括号
             {
-                if (strOperator == "(")
+                if (strOperator == "("|| strOperator == "√")
                     return true;
                 return false;
             }
@@ -119,7 +121,7 @@ namespace Calculator
             {
                 return false;
             }
-            if (!noleftphs.Contains(c.ToString())) //表达式最后为右括号或数字
+            if (!norightphs.Contains(c.ToString())) //表达式最后为右括号或数字
             {
                 var leftParenthesis = strStrCount(sOperatorNum, "(");
                 var rightParenthesis = strStrCount(sOperatorNum, ")");

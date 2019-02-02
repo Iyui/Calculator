@@ -8,6 +8,13 @@ namespace Calculator
     public class PostfixExp
     {
         /// <summary>
+        /// 该表中索引越大,运算符优先级越高
+        /// </summary>
+        public HashSet<string> Precedencehs1 { get; } = new HashSet<string> { "+", "-" };
+        public HashSet<string> Precedencehs2 { get; } = new HashSet<string> { "*", "/", "^", "√" };
+
+
+        /// <summary>
         /// 计算后序表达式
         /// </summary>
         /// <returns></returns>
@@ -76,12 +83,12 @@ namespace Calculator
                 var element = explist[index];
 
                 bool isNum = double.TryParse(element, out double r);
-                if (element == "")
+                if (element == "") //为什么会出现空字符暂时未知
                     continue;
                 if (isNum)
                 {
                     PostfixExpList.Add(element);
-                    if (stack.Any() && (stack.Peek() == "*" || stack.Peek() == "/"))
+                    if (stack.Any() && Precedencehs2.Contains(stack.Peek()))
                         PostfixExpList.Add(stack.Pop());
                 }
                 else if (!isNum && element != ")")
