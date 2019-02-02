@@ -126,7 +126,5 @@ namespace Calculator
             }
             return stack.Pop().ToString();
         }
-
-
     }
 }

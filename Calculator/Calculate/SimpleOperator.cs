@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Calculator
 {
-
     #region 简易四则运算
     public class SimpleOperator : Calculator
     {
@@ -28,8 +27,8 @@ namespace Calculator
 
         public override string Equal(string strOperator = "+", bool isEqualSign = false)
         {
-            needReset = false;
-            if (OperatorClicked)
+            Reset = false;
+            if (OperatorClicked && !isEqualSign)
                 return total;
             OperatorClicked = true;
             if (total == null)
@@ -38,15 +37,15 @@ namespace Calculator
                 total = sOperatorNum;
                 sOperatorNum = "";
                 //tbDisplayScreen.Text = "0";
-                needClear = true;
+                Button_Clear = true;
                 return total;
             }
             if (lastOperator == "" || sOperatorNum == "")
                 return total;
             if (sOperatorNum == "0" && lastOperator == "/")
             {
-                needClear = true;
-                needReset = true;
+                Button_Clear = true;
+                Reset = true;
                 total = null;
                 return "除数不能为零";
             }
@@ -58,38 +57,33 @@ namespace Calculator
 
             if (isEqualSign)
             {
-                needReset = true;
+                Reset = true;
             }
 
-            //tbDisplayScreen.Text = total;
             lastOperator = strOperator;
-            canBackSpace = false;
-            needClear = true;
+            Button_BackSpace = false;
+            Button_Clear = true;
             return total;
         }
 
         public override string Click_Num_Button(string num)
         {
-            if (needClear)
+            if (Button_Clear)
             {
-                //tbDisplayScreen.Text = "";
                 sOperatorNum = "0";
-                needClear = false;
+                Button_Clear = false;
             }
-            if (needReset)
+            if (Reset)
             {
                 total = null;
-                needReset = false;
+                Reset = false;
             }
-            //tbDisplayScreen.Text += num;
             sOperatorNum += num;
             if (sOperatorNum.IndexOf(".") == -1)
             {
-
-                sOperatorNum = Convert.ToDouble(sOperatorNum).ToString();
-                //tbDisplayScreen.Text = sOperatorNum;//去除头部多余的0
+                sOperatorNum = Convert.ToDouble(sOperatorNum).ToString();//去除头部多余的0
             }
-            canBackSpace = true;
+            Button_BackSpace = true;
             OperatorClicked = false;
             return sOperatorNum;
         }

@@ -18,6 +18,11 @@ namespace Calculator
             {
                 if (canAddOperator(strOperator))
                 {
+                    while (RightInput.IndexOf('.') != -1 && sOperatorNum[sOperatorNum.Length - 1] == '0'|| RightInput[RightInput.Length - 1] == '.')//删除多余的"."和"0"
+                    {
+                        sOperatorNum = sOperatorNum.Substring(0, sOperatorNum.Length - 1);
+                        RightInput = RightInput.Substring(0, RightInput.Length - 1);
+                    }
                     sOperatorNum += strOperator;
                     RightInput = "";
                 }
@@ -48,9 +53,17 @@ namespace Calculator
 
         public override string Click_Num_Button(string num)
         {
-            RightInput += num;
-            canBackSpace = true;
-            sOperatorNum += num;
+            Button_BackSpace = true;
+            if (RightInput == "0")//运算符后第一个字符是"0"时,再输入数字时"0"删除
+            {
+                RightInput = num;
+                sOperatorNum = sOperatorNum.Substring(0, sOperatorNum.Length - 1) + num;
+            }
+            else
+            {
+                RightInput += num;
+                sOperatorNum += num;
+            }
             return sOperatorNum;
         }
 
@@ -88,12 +101,13 @@ namespace Calculator
                 return true;
             return false;
         }
+        
 
         /// <summary>
         /// 表达式成立
         /// </summary>
         /// <returns></returns>
-        private bool isExpressionHolds()
+        public bool isExpressionHolds()
         {
             var len = sOperatorNum.Length;
             char c;
@@ -118,7 +132,9 @@ namespace Calculator
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
     }
     #endregion

@@ -25,6 +25,7 @@ namespace Calculator
             get => _total;
             set => _total = value;
         }
+
         /// <summary>
         ///  用来储存输入的每个数
         /// </summary>
@@ -33,34 +34,46 @@ namespace Calculator
             get => _sOperatorNum;
             set => _sOperatorNum=value;
         }
+
         /// <summary>
         /// 用来辨别进行何种运算,与显示框tbDisplayScreen.Text相同
         /// </summary>
         public string sOperator { get; set; } = "";
+
+        /// <summary>
+        /// 记录简单运算中输入的上一个运算符
+        /// 功能实现为 如输入1+2*3的"*"时计算出1+2
+        /// </summary>
         public string lastOperator { get; set; } = "";
 
         /// <summary>
         /// "C"键清除信息
         /// </summary>
-        public bool needClear { get; set; } = false;
+        public bool Button_Clear { get; set; } = false;
 
         /// <summary>
         /// 按"="后输入为数字时重新开始计算
         /// </summary>
-        public bool needReset { get; set; } = false;
+        public bool Reset { get; set; } = false;
 
         /// <summary>
         /// 只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
         /// </summary>
-        public bool canBackSpace
+        public bool Button_BackSpace
         {
             get => _canBackSpace;
             set => _canBackSpace = value;
         }
+
         /// <summary>
         /// 多次按加减乘除无效
         /// </summary>
         public bool OperatorClicked { get; set; } = false;
+
+
+        /// <summary>
+        /// 用来判断算术表达式中是否能继续添加数字或运算符
+        /// </summary>
         public string RightInput
         {
             get => _RightInput;
@@ -97,13 +110,10 @@ namespace Calculator
 
             btLeftParenthesis.Click += new EventHandler(Operator_button_Click);
             btRightParenthesis.Click += new EventHandler(Operator_button_Click);
-
-
         }
 
         private void Calculator_Load(object sender, EventArgs e)
         {
-            //CalculationType = EqualFactory.createOperate(1);
             CalculationType = EqualFactory.createOperate(1);
         }
 
@@ -187,11 +197,11 @@ namespace Calculator
 
         public class operationFactory               //处理运算符的类
         {
-            public static Calculate createOperate(string operate)
+            public static Calculate createOperate(string Operator)
             {
                 Calculate cal = null;
 
-                switch (operate)
+                switch (Operator)
                 {
                     case "+":
                         cal = new CalculateAdd();          //实例化加法运算
@@ -249,14 +259,15 @@ namespace Calculator
         {
             total = null;
             sOperatorNum = "";
+            RightInput = "";
             tbDisplayScreen.Text = "";
-            needClear = true;
+            Button_Clear = true;
         }
 
         //退格键
         private void btBackSpace_Click(object sender, EventArgs e)
         {
-            if (sOperatorNum.Length > 0 && canBackSpace)
+            if (sOperatorNum.Length > 0 && Button_BackSpace)
             {
                 sOperatorNum = sOperatorNum.Substring(0, sOperatorNum.Length - 1);
                 if (RightInput.Length>0)
@@ -276,11 +287,7 @@ namespace Calculator
                 {
                     RightInput = sOperatorNum.Substring(lastOperatorIndex, sOperatorNum.Length - lastOperatorIndex);
                 }
-
-                //var lastOperatorIndex = tbDisplayScreen.Text.IndexOf(, lastPointIndex);
-                //RightInput
-            }
-            
+            }  
         }
         //小数点
         private void btPoint_Click(object sender, EventArgs e)
