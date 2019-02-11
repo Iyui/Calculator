@@ -35,7 +35,7 @@ namespace Calculator
             {
                 lastOperator = strOperator;
                 total = sOperatorNum;
-                sOperatorNum = "";
+                sOperatorNum = null;
                 //tbDisplayScreen.Text = "0";
                 Button_Clear = true;
                 return total;
@@ -89,5 +89,4 @@ namespace Calculator
         }
     }
     #endregion
-
 }

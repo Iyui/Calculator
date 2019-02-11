@@ -17,7 +17,12 @@ namespace Calculator
         static bool _canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
         static string _RightInput = "";
         HashSet<string> OperatorHs = new HashSet<string> { "+", "-", "*", "/", "(", ")" };
-
+        /// <summary>
+        /// 该表中索引越大,运算符优先级越高
+        /// </summary>
+        public static HashSet<string> Precedencehs1 { get; } = new HashSet<string> { "+", "-" };
+        public static HashSet<string> Precedencehs2 { get; } = new HashSet<string> { "*", "/", "^", "√" };
+        public static HashSet<string> Precedencehs3 { get; } = new HashSet<string> { "!" };
         #endregion
 
         public string total
@@ -109,6 +114,7 @@ namespace Calculator
             btDivide.Click += new EventHandler(Operator_button_Click);
             btPower.Click += new EventHandler(Operator_button_Click);
             btSqrt.Click += new EventHandler(Operator_button_Click);
+            btFac.Click += new EventHandler(Operator_button_Click);
 
             btLeftParenthesis.Click += new EventHandler(Operator_button_Click);
             btRightParenthesis.Click += new EventHandler(Operator_button_Click);
@@ -220,7 +226,7 @@ namespace Calculator
                 if (NumberB != 0)
                 {
                     NumberB = 1 / NumberB;
-                    Result = Math.Pow(NumberA, NumberB); ;
+                    Result = Math.Pow(NumberA, NumberB); 
                 }
                 else
                 {
@@ -228,6 +234,31 @@ namespace Calculator
                     return 0;
                 }
                 return Result;
+            }
+        }
+
+        /// <summary>
+        /// 阶乘
+        /// </summary>
+        public class CalculateFac : Calculate
+        {
+            public override double GetResult()
+            {
+                double Result = 0;
+                Result = Factorial(NumberA);
+                return Result;
+            }
+
+            /// <summary>
+            /// 求阶乘
+            /// </summary>
+            /// <param name="fac"></param>
+            /// <returns></returns>
+            private double Factorial(double fac)
+            {
+                if (fac == 1 || fac == 0)
+                    return 1;
+                return fac * Factorial(fac - 1);
             }
         }
         #endregion
@@ -257,6 +288,9 @@ namespace Calculator
                         break;
                     case "√":
                         cal = new CalculateSqrt();
+                        break;
+                    case "!":
+                        cal = new CalculateFac();
                         break;
                 }
                 return cal;
@@ -293,7 +327,7 @@ namespace Calculator
         private void Operator_button_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
-            sOperator = b.Text;
+            sOperator = b.Tag.ToString();
             CalculatorEqual(sOperator);
         }
 

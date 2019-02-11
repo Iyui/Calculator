@@ -7,11 +7,7 @@ namespace Calculator
 {
     public class PostfixExp
     {
-        /// <summary>
-        /// 该表中索引越大,运算符优先级越高
-        /// </summary>
-        public HashSet<string> Precedencehs1 { get; } = new HashSet<string> { "+", "-" };
-        public HashSet<string> Precedencehs2 { get; } = new HashSet<string> { "*", "/", "^", "√" };
+        
 
 
         /// <summary>

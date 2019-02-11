@@ -54,7 +54,7 @@
             this.rbSimpleOperator = new System.Windows.Forms.RadioButton();
             this.btSqrt = new System.Windows.Forms.Button();
             this.btPower = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btFac = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,6 +154,7 @@
             this.btDivide.Name = "btDivide";
             this.btDivide.Size = new System.Drawing.Size(75, 43);
             this.btDivide.TabIndex = 9;
+            this.btDivide.Tag = "/";
             this.btDivide.Text = "/";
             this.btDivide.UseVisualStyleBackColor = true;
             // 
@@ -163,6 +164,7 @@
             this.btEqual.Name = "btEqual";
             this.btEqual.Size = new System.Drawing.Size(53, 101);
             this.btEqual.TabIndex = 15;
+            this.btEqual.Tag = "=";
             this.btEqual.Text = "=";
             this.btEqual.UseVisualStyleBackColor = true;
             this.btEqual.Click += new System.EventHandler(this.btEqual_Click);
@@ -173,6 +175,7 @@
             this.btMultiply.Name = "btMultiply";
             this.btMultiply.Size = new System.Drawing.Size(75, 43);
             this.btMultiply.TabIndex = 14;
+            this.btMultiply.Tag = "*";
             this.btMultiply.Text = "*";
             this.btMultiply.UseVisualStyleBackColor = true;
             // 
@@ -182,6 +185,7 @@
             this.btSub.Name = "btSub";
             this.btSub.Size = new System.Drawing.Size(75, 43);
             this.btSub.TabIndex = 13;
+            this.btSub.Tag = "-";
             this.btSub.Text = "-";
             this.btSub.UseVisualStyleBackColor = true;
             // 
@@ -191,6 +195,7 @@
             this.btPlus.Name = "btPlus";
             this.btPlus.Size = new System.Drawing.Size(75, 43);
             this.btPlus.TabIndex = 12;
+            this.btPlus.Tag = "+";
             this.btPlus.Text = "+";
             this.btPlus.UseVisualStyleBackColor = true;
             // 
@@ -200,6 +205,7 @@
             this.btPoint.Name = "btPoint";
             this.btPoint.Size = new System.Drawing.Size(75, 43);
             this.btPoint.TabIndex = 16;
+            this.btPoint.Tag = ".";
             this.btPoint.Text = ".";
             this.btPoint.UseVisualStyleBackColor = true;
             this.btPoint.Click += new System.EventHandler(this.btPoint_Click);
@@ -242,6 +248,7 @@
             this.btRightParenthesis.Name = "btRightParenthesis";
             this.btRightParenthesis.Size = new System.Drawing.Size(75, 43);
             this.btRightParenthesis.TabIndex = 21;
+            this.btRightParenthesis.Tag = ")";
             this.btRightParenthesis.Text = ")";
             this.btRightParenthesis.UseVisualStyleBackColor = true;
             this.btRightParenthesis.Visible = false;
@@ -252,6 +259,7 @@
             this.btLeftParenthesis.Name = "btLeftParenthesis";
             this.btLeftParenthesis.Size = new System.Drawing.Size(75, 43);
             this.btLeftParenthesis.TabIndex = 20;
+            this.btLeftParenthesis.Tag = "(";
             this.btLeftParenthesis.Text = "(";
             this.btLeftParenthesis.UseVisualStyleBackColor = true;
             this.btLeftParenthesis.Visible = false;
@@ -298,7 +306,8 @@
             this.btSqrt.Name = "btSqrt";
             this.btSqrt.Size = new System.Drawing.Size(75, 43);
             this.btSqrt.TabIndex = 24;
-            this.btSqrt.Text = "√";
+            this.btSqrt.Tag = "√";
+            this.btSqrt.Text = "y√x";
             this.btSqrt.UseVisualStyleBackColor = true;
             // 
             // btPower
@@ -310,21 +319,22 @@
             this.btPower.Text = "^";
             this.btPower.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btFac
             // 
-            this.button1.Location = new System.Drawing.Point(526, 156);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 43);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "!";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btFac.Location = new System.Drawing.Point(526, 156);
+            this.btFac.Name = "btFac";
+            this.btFac.Size = new System.Drawing.Size(66, 43);
+            this.btFac.TabIndex = 25;
+            this.btFac.Tag = "!";
+            this.btFac.Text = "n!";
+            this.btFac.UseVisualStyleBackColor = true;
             // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 456);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btFac);
             this.Controls.Add(this.btSqrt);
             this.Controls.Add(this.btPower);
             this.Controls.Add(this.groupBox1);
@@ -387,7 +397,7 @@
         private System.Windows.Forms.RadioButton rbSimpleOperator;
         private System.Windows.Forms.Button btSqrt;
         private System.Windows.Forms.Button btPower;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btFac;
     }
 }
 
