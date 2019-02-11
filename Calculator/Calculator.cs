@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Web.UI.DataVisualization.Charting;
 namespace Calculator
 {
     public partial class Calculator : Form
@@ -236,17 +237,20 @@ namespace Calculator
                 return Result;
             }
         }
-
+        
         /// <summary>
         /// 阶乘
         /// </summary>
         public class CalculateFac : Calculate
-        {
+        {         
             public override double GetResult()
             {
                 double Result = 0;
-                Result = Factorial(NumberA);
-                return Result;
+                //Result = new Chart().DataManipulator.Statistics.GammaFunction(NumberA);
+                if (!NumberA.ToString().Contains("."))
+                    return Result = Factorial(NumberA);
+                else
+                    return double.NaN;
             }
 
             /// <summary>
