@@ -12,12 +12,13 @@ namespace Calculator
 {
     public partial class Calculator : Form
     {
+        Calculate calculate;
         #region 变量
         static string _total = null;
-        static string _sOperatorNum;                                  //用来储存输入的每个数
         static bool _canBackSpace = false;  //只有在用户输入数字的情况下能使用退格键,计算出来的数字无法使用
         static string _RightInput = "";
         HashSet<string> OperatorHs = new HashSet<string> { "+", "-", "*", "/", "(", ")" };
+        //private SimpleOperator so = new SimpleOperator();
         /// <summary>
         /// 该表中索引越大,运算符优先级越高
         /// </summary>
@@ -35,11 +36,7 @@ namespace Calculator
         /// <summary>
         ///  用来储存输入的每个数
         /// </summary>
-        public string sOperatorNum
-        {
-            get => _sOperatorNum;
-            set => _sOperatorNum=value;
-        }
+        public static string sOperatorNum { get; set; }
 
         /// <summary>
         /// 用来辨别进行何种运算,与显示框tbDisplayScreen.Text相同
@@ -55,7 +52,7 @@ namespace Calculator
         /// <summary>
         /// "C"键清除信息
         /// </summary>
-        public bool Button_Clear { get; set; } = false;
+        public static bool Button_Clear { get; set; } = false;
 
         /// <summary>
         /// 按"="后输入为数字时重新开始计算
@@ -76,7 +73,7 @@ namespace Calculator
         /// </summary>
         public bool OperatorClicked { get; set; } = false;
 
-
+        
         /// <summary>
         /// 用来判断算术表达式中是否能继续添加数字或运算符
         /// </summary>
@@ -90,6 +87,7 @@ namespace Calculator
         {
             InitializeComponent();
             Binding();
+             
         }
 
         /// <summary>
@@ -124,6 +122,7 @@ namespace Calculator
         private void Calculator_Load(object sender, EventArgs e)
         {
             CalculationType = EqualFactory.createOperate(1);
+            
         }
 
         public virtual string Equal(string strOperator = "+", bool isEqualSign = false) { return ""; }
@@ -339,7 +338,7 @@ namespace Calculator
         private void btClear_Click(object sender, EventArgs e)
         {
             total = null;
-            sOperatorNum = "";
+            sOperatorNum = null;
             RightInput = "";
             tbDisplayScreen.Text = "";
             Button_Clear = true;
@@ -370,6 +369,7 @@ namespace Calculator
                 }
             }  
         }
+
         //小数点
         private void btPoint_Click(object sender, EventArgs e)
         {
@@ -415,6 +415,47 @@ namespace Calculator
                 CalculationType = EqualFactory.createOperate(2);
                 btClear_Click(sender, e);
             }
+        }
+
+
+        private double dMemorySave = 0;
+        private void btMemoryClear_Click(object sender, EventArgs e)
+        {
+            dMemorySave = 0;
+            btClear_Click(sender,e);
+        }
+
+        private void btMemoryReply_Click(object sender, EventArgs e)
+        {
+            tbDisplayScreen.Text = sOperatorNum = dMemorySave.ToString();
+            Button_Clear = true;
+        }
+
+        private void btMemorySave_Click(object sender, EventArgs e)
+        {
+            dMemorySave = Convert.ToDouble(tbDisplayScreen.Text);
+            Button_Clear = true;
+        }
+
+        private void btMemoryPlus_Click(object sender, EventArgs e)
+        {
+            dMemorySave = Convert.ToDouble(sMemoryCalculate("+"));
+            Button_Clear = true;
+        }
+
+        private void btMemorySub_Click(object sender, EventArgs e)
+        {
+            dMemorySave = Convert.ToDouble(sMemoryCalculate("-"));
+            Button_Clear = true;
+        }
+        
+        private string sMemoryCalculate(string ope)
+        {
+            calculate = operationFactory.createOperate(ope);
+            calculate.NumberA = Convert.ToDouble(dMemorySave);
+            calculate.NumberB = Convert.ToDouble(tbDisplayScreen.Text);
+            total = calculate.GetResult().ToString();
+            return total;
         }
     }
 }

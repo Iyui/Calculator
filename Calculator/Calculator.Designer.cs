@@ -55,6 +55,11 @@
             this.btSqrt = new System.Windows.Forms.Button();
             this.btPower = new System.Windows.Forms.Button();
             this.btFac = new System.Windows.Forms.Button();
+            this.btMemorySub = new System.Windows.Forms.Button();
+            this.btMemoryPlus = new System.Windows.Forms.Button();
+            this.btMemorySave = new System.Windows.Forms.Button();
+            this.btMemoryReply = new System.Windows.Forms.Button();
+            this.btMemoryClear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -162,7 +167,7 @@
             // 
             this.btEqual.Location = new System.Drawing.Point(526, 323);
             this.btEqual.Name = "btEqual";
-            this.btEqual.Size = new System.Drawing.Size(53, 101);
+            this.btEqual.Size = new System.Drawing.Size(66, 101);
             this.btEqual.TabIndex = 15;
             this.btEqual.Tag = "=";
             this.btEqual.Text = "=";
@@ -214,7 +219,7 @@
             // 
             this.tbDisplayScreen.BackColor = System.Drawing.Color.White;
             this.tbDisplayScreen.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbDisplayScreen.Location = new System.Drawing.Point(157, 88);
+            this.tbDisplayScreen.Location = new System.Drawing.Point(170, 24);
             this.tbDisplayScreen.Multiline = true;
             this.tbDisplayScreen.Name = "tbDisplayScreen";
             this.tbDisplayScreen.ReadOnly = true;
@@ -226,7 +231,7 @@
             // 
             this.btClear.Location = new System.Drawing.Point(526, 264);
             this.btClear.Name = "btClear";
-            this.btClear.Size = new System.Drawing.Size(53, 43);
+            this.btClear.Size = new System.Drawing.Size(66, 43);
             this.btClear.TabIndex = 19;
             this.btClear.Text = "C";
             this.btClear.UseVisualStyleBackColor = true;
@@ -236,7 +241,7 @@
             // 
             this.btBackSpace.Location = new System.Drawing.Point(526, 205);
             this.btBackSpace.Name = "btBackSpace";
-            this.btBackSpace.Size = new System.Drawing.Size(53, 43);
+            this.btBackSpace.Size = new System.Drawing.Size(66, 43);
             this.btBackSpace.TabIndex = 18;
             this.btBackSpace.Text = "←";
             this.btBackSpace.UseVisualStyleBackColor = true;
@@ -268,7 +273,7 @@
             // 
             this.groupBox1.Controls.Add(this.rbOperationExpression);
             this.groupBox1.Controls.Add(this.rbSimpleOperator);
-            this.groupBox1.Location = new System.Drawing.Point(4, 73);
+            this.groupBox1.Location = new System.Drawing.Point(17, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(147, 71);
             this.groupBox1.TabIndex = 22;
@@ -316,6 +321,7 @@
             this.btPower.Name = "btPower";
             this.btPower.Size = new System.Drawing.Size(75, 43);
             this.btPower.TabIndex = 23;
+            this.btPower.Tag = "^";
             this.btPower.Text = "^";
             this.btPower.UseVisualStyleBackColor = true;
             // 
@@ -329,11 +335,70 @@
             this.btFac.Text = "n!";
             this.btFac.UseVisualStyleBackColor = true;
             // 
+            // btMemorySub
+            // 
+            this.btMemorySub.Location = new System.Drawing.Point(526, 98);
+            this.btMemorySub.Name = "btMemorySub";
+            this.btMemorySub.Size = new System.Drawing.Size(66, 43);
+            this.btMemorySub.TabIndex = 30;
+            this.btMemorySub.Tag = "!";
+            this.btMemorySub.Text = "M-";
+            this.btMemorySub.UseVisualStyleBackColor = true;
+            this.btMemorySub.Click += new System.EventHandler(this.btMemorySub_Click);
+            // 
+            // btMemoryPlus
+            // 
+            this.btMemoryPlus.Location = new System.Drawing.Point(433, 98);
+            this.btMemoryPlus.Name = "btMemoryPlus";
+            this.btMemoryPlus.Size = new System.Drawing.Size(75, 43);
+            this.btMemoryPlus.TabIndex = 29;
+            this.btMemoryPlus.Tag = "√";
+            this.btMemoryPlus.Text = "M+";
+            this.btMemoryPlus.UseVisualStyleBackColor = true;
+            this.btMemoryPlus.Click += new System.EventHandler(this.btMemoryPlus_Click);
+            // 
+            // btMemorySave
+            // 
+            this.btMemorySave.Location = new System.Drawing.Point(342, 98);
+            this.btMemorySave.Name = "btMemorySave";
+            this.btMemorySave.Size = new System.Drawing.Size(75, 43);
+            this.btMemorySave.TabIndex = 28;
+            this.btMemorySave.Text = "MS";
+            this.btMemorySave.UseVisualStyleBackColor = true;
+            this.btMemorySave.Click += new System.EventHandler(this.btMemorySave_Click);
+            // 
+            // btMemoryReply
+            // 
+            this.btMemoryReply.Location = new System.Drawing.Point(248, 98);
+            this.btMemoryReply.Name = "btMemoryReply";
+            this.btMemoryReply.Size = new System.Drawing.Size(75, 43);
+            this.btMemoryReply.TabIndex = 27;
+            this.btMemoryReply.Tag = ")";
+            this.btMemoryReply.Text = "MR";
+            this.btMemoryReply.UseVisualStyleBackColor = true;
+            this.btMemoryReply.Click += new System.EventHandler(this.btMemoryReply_Click);
+            // 
+            // btMemoryClear
+            // 
+            this.btMemoryClear.Location = new System.Drawing.Point(157, 98);
+            this.btMemoryClear.Name = "btMemoryClear";
+            this.btMemoryClear.Size = new System.Drawing.Size(75, 43);
+            this.btMemoryClear.TabIndex = 26;
+            this.btMemoryClear.Tag = "(";
+            this.btMemoryClear.Text = "MC";
+            this.btMemoryClear.UseVisualStyleBackColor = true;
+            this.btMemoryClear.Click += new System.EventHandler(this.btMemoryClear_Click);
+            // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 456);
+            this.Controls.Add(this.btMemorySub);
+            this.Controls.Add(this.btMemoryPlus);
+            this.Controls.Add(this.btMemorySave);
+            this.Controls.Add(this.btMemoryReply);
+            this.Controls.Add(this.btMemoryClear);
             this.Controls.Add(this.btFac);
             this.Controls.Add(this.btSqrt);
             this.Controls.Add(this.btPower);
@@ -398,6 +463,11 @@
         private System.Windows.Forms.Button btSqrt;
         private System.Windows.Forms.Button btPower;
         private System.Windows.Forms.Button btFac;
+        private System.Windows.Forms.Button btMemorySub;
+        private System.Windows.Forms.Button btMemoryPlus;
+        private System.Windows.Forms.Button btMemorySave;
+        private System.Windows.Forms.Button btMemoryReply;
+        private System.Windows.Forms.Button btMemoryClear;
     }
 }
 

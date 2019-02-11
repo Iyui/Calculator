@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Calculator
 {
-    #region 简易四则运算
+    #region 标准型计算
     public class SimpleOperator : Calculator
     {
         Calculate calculate;
