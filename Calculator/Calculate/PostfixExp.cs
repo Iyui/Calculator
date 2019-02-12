@@ -7,9 +7,6 @@ namespace Calculator
 {
     public class PostfixExp
     {
-        
-
-
         /// <summary>
         /// 计算后序表达式
         /// </summary>
@@ -22,10 +19,15 @@ namespace Calculator
         public string Expression { get; set; } = "0";
 
         /// <summary>
-        /// 表达式字符串转换成列表形式
+        /// 非运算符
         /// </summary>
-        /// <returns></returns>
-        public List<string> ExpressionList()
+        private readonly string sNotOperator = ".";
+
+    /// <summary>
+    /// 表达式字符串转换成列表形式
+    /// </summary>
+    /// <returns></returns>
+    public List<string> ExpressionList()
         {
             List<string> expressionList = new List<string>();
             int length = Expression.Length;
@@ -34,7 +36,7 @@ namespace Calculator
             {
                 char c = Expression[index];
                 bool isNum = int.TryParse(c.ToString(), out int result);
-                if (isNum || c == '.')//分割数字与运算符
+                if (isNum || sNotOperator.Contains(c))//分割数字与运算符
                 {
                     sElement += c;
                     if (index != length - 1)
@@ -50,6 +52,7 @@ namespace Calculator
             }
             return expressionList;
         }
+
 
         public double CaculateElement(string Operator, double numA, double numB)
         {

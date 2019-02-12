@@ -9,9 +9,9 @@ namespace Calculator
     public class OperationExpression : Calculator
     {
         HashSet<string> OperatorHs = new HashSet<string> { "+", "-", "*", "/", "(", ")" , "^", "√" };
-        HashSet<string> nphs = new HashSet<string> { "+", "-", "*", "/", "^", "√" };
-        HashSet<string> norightphs = new HashSet<string> { "+", "-", "*", "/", "(" ,"^", "√" };
-        HashSet<string> noleftphs = new HashSet<string> { "+", "-", "*", "/", ")" , "^", "√" };
+        HashSet<string> nphs = new HashSet<string> { "+", "-", "*", "/", "^", "√" };//无括号
+        HashSet<string> norightphs = new HashSet<string> { "+", "-", "*", "/", "(" ,"^", "√" };//无右括号
+        HashSet<string> noleftphs = new HashSet<string> { "+", "-", "*", "/", ")" , "^", "√" };//无左括号
         public override string Equal(string strOperator = "+", bool isEqualSign = false)
         {
             if (!isEqualSign)
@@ -101,7 +101,9 @@ namespace Calculator
                 return true;
             else if ((!norightphs.Contains(c.ToString())) && nphs.Contains(strOperator)) //加减乘除符号可以添加在数字及右括号右边
                 return true;
-            return false;
+            else
+                return true;
+            //return false;
         }
         
 

@@ -127,7 +127,7 @@ namespace Calculator
 
         public virtual string Equal(string strOperator = "+", bool isEqualSign = false) { return ""; }
         public virtual string Click_Num_Button(string num) { return null; }
-
+        public virtual string Inverse(string num) { return null; }
         public virtual string SetPoint() { return null; }
 
         public int strStrCount(string S,string s) {return System.Text.RegularExpressions.Regex.Matches(S, "["+s+"]").Count; }
@@ -456,6 +456,12 @@ namespace Calculator
             calculate.NumberB = Convert.ToDouble(tbDisplayScreen.Text);
             total = calculate.GetResult().ToString();
             return total;
+        }
+
+        //相反数
+        private void btInverse_Click(object sender, EventArgs e)
+        {
+            tbDisplayScreen.Text = CalculationType.Inverse(sOperatorNum);
         }
     }
 }

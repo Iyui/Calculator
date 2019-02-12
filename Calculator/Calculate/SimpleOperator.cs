@@ -87,6 +87,12 @@ namespace Calculator
             OperatorClicked = false;
             return sOperatorNum;
         }
+
+        public override string Inverse(string num)
+        {
+            sOperatorNum  = (0 - Convert.ToDouble(num)).ToString();
+            return sOperatorNum;
+        }
     }
     #endregion
 }

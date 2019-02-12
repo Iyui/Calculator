@@ -60,6 +60,7 @@
             this.btMemorySave = new System.Windows.Forms.Button();
             this.btMemoryReply = new System.Windows.Forms.Button();
             this.btMemoryClear = new System.Windows.Forms.Button();
+            this.btInverse = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -298,10 +299,10 @@
             this.rbSimpleOperator.Checked = true;
             this.rbSimpleOperator.Location = new System.Drawing.Point(9, 21);
             this.rbSimpleOperator.Name = "rbSimpleOperator";
-            this.rbSimpleOperator.Size = new System.Drawing.Size(95, 16);
+            this.rbSimpleOperator.Size = new System.Drawing.Size(71, 16);
             this.rbSimpleOperator.TabIndex = 0;
             this.rbSimpleOperator.TabStop = true;
-            this.rbSimpleOperator.Text = "简易四则运算";
+            this.rbSimpleOperator.Text = "标准运算";
             this.rbSimpleOperator.UseVisualStyleBackColor = true;
             this.rbSimpleOperator.CheckedChanged += new System.EventHandler(this.rbSimpleOperator_CheckedChanged);
             // 
@@ -389,11 +390,23 @@
             this.btMemoryClear.UseVisualStyleBackColor = true;
             this.btMemoryClear.Click += new System.EventHandler(this.btMemoryClear_Click);
             // 
+            // btInverse
+            // 
+            this.btInverse.Location = new System.Drawing.Point(608, 156);
+            this.btInverse.Name = "btInverse";
+            this.btInverse.Size = new System.Drawing.Size(66, 43);
+            this.btInverse.TabIndex = 31;
+            this.btInverse.Tag = "±";
+            this.btInverse.Text = "±";
+            this.btInverse.UseVisualStyleBackColor = true;
+            this.btInverse.Click += new System.EventHandler(this.btInverse_Click);
+            // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 456);
+            this.Controls.Add(this.btInverse);
             this.Controls.Add(this.btMemorySub);
             this.Controls.Add(this.btMemoryPlus);
             this.Controls.Add(this.btMemorySave);
@@ -468,6 +481,7 @@
         private System.Windows.Forms.Button btMemorySave;
         private System.Windows.Forms.Button btMemoryReply;
         private System.Windows.Forms.Button btMemoryClear;
+        private System.Windows.Forms.Button btInverse;
     }
 }
 
