@@ -61,6 +61,9 @@
             this.btMemoryReply = new System.Windows.Forms.Button();
             this.btMemoryClear = new System.Windows.Forms.Button();
             this.btInverse = new System.Windows.Forms.Button();
+            this.btCos = new System.Windows.Forms.Button();
+            this.btSin = new System.Windows.Forms.Button();
+            this.btTan = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,9 +169,9 @@
             // 
             // btEqual
             // 
-            this.btEqual.Location = new System.Drawing.Point(526, 323);
+            this.btEqual.Location = new System.Drawing.Point(526, 381);
             this.btEqual.Name = "btEqual";
-            this.btEqual.Size = new System.Drawing.Size(66, 101);
+            this.btEqual.Size = new System.Drawing.Size(151, 43);
             this.btEqual.TabIndex = 15;
             this.btEqual.Tag = "=";
             this.btEqual.Text = "=";
@@ -392,7 +395,7 @@
             // 
             // btInverse
             // 
-            this.btInverse.Location = new System.Drawing.Point(608, 156);
+            this.btInverse.Location = new System.Drawing.Point(526, 323);
             this.btInverse.Name = "btInverse";
             this.btInverse.Size = new System.Drawing.Size(66, 43);
             this.btInverse.TabIndex = 31;
@@ -401,11 +404,44 @@
             this.btInverse.UseVisualStyleBackColor = true;
             this.btInverse.Click += new System.EventHandler(this.btInverse_Click);
             // 
+            // btCos
+            // 
+            this.btCos.Location = new System.Drawing.Point(611, 157);
+            this.btCos.Name = "btCos";
+            this.btCos.Size = new System.Drawing.Size(66, 43);
+            this.btCos.TabIndex = 35;
+            this.btCos.Tag = "cos";
+            this.btCos.Text = "cos";
+            this.btCos.UseVisualStyleBackColor = true;
+            // 
+            // btSin
+            // 
+            this.btSin.Location = new System.Drawing.Point(611, 215);
+            this.btSin.Name = "btSin";
+            this.btSin.Size = new System.Drawing.Size(66, 43);
+            this.btSin.TabIndex = 34;
+            this.btSin.Tag = "sin";
+            this.btSin.Text = "sin";
+            this.btSin.UseVisualStyleBackColor = true;
+            // 
+            // btTan
+            // 
+            this.btTan.Location = new System.Drawing.Point(611, 264);
+            this.btTan.Name = "btTan";
+            this.btTan.Size = new System.Drawing.Size(66, 43);
+            this.btTan.TabIndex = 32;
+            this.btTan.Tag = "tan";
+            this.btTan.Text = "tan";
+            this.btTan.UseVisualStyleBackColor = true;
+            // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 456);
+            this.Controls.Add(this.btCos);
+            this.Controls.Add(this.btSin);
+            this.Controls.Add(this.btTan);
             this.Controls.Add(this.btInverse);
             this.Controls.Add(this.btMemorySub);
             this.Controls.Add(this.btMemoryPlus);
@@ -482,6 +518,9 @@
         private System.Windows.Forms.Button btMemoryReply;
         private System.Windows.Forms.Button btMemoryClear;
         private System.Windows.Forms.Button btInverse;
+        private System.Windows.Forms.Button btCos;
+        private System.Windows.Forms.Button btSin;
+        private System.Windows.Forms.Button btTan;
     }
 }
 

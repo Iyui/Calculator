@@ -114,6 +114,11 @@ namespace Calculator
             btPower.Click += new EventHandler(Operator_button_Click);
             btSqrt.Click += new EventHandler(Operator_button_Click);
             btFac.Click += new EventHandler(Operator_button_Click);
+            btCos.Click += new EventHandler(Operator_button_Click);
+            btTan.Click += new EventHandler(Operator_button_Click);
+            btSin.Click += new EventHandler(Operator_button_Click);
+
+
 
             btLeftParenthesis.Click += new EventHandler(Operator_button_Click);
             btRightParenthesis.Click += new EventHandler(Operator_button_Click);
@@ -264,6 +269,32 @@ namespace Calculator
                 return fac * Factorial(fac - 1);
             }
         }
+        public class CalculateTan : Calculate
+        {
+            public override double GetResult()
+            {
+                double Result = 0;
+                if (NumberA % 180 == 0)
+                    return 0;
+                return Result = Math.Tan(NumberA * Math.PI / 180); 
+            }
+        }
+        public class CalculateSin : Calculate
+        {
+            public override double GetResult()
+            {
+                double Result = 0;
+                return Result = Math.Sin(NumberA * Math.PI / 180);
+            }
+        }
+        public class CalculateCos : Calculate
+        {
+            public override double GetResult()
+            {
+                double Result = 0;
+                return Result = Math.Cos(NumberA*Math.PI/180);
+            }
+        }
         #endregion
 
         public class operationFactory               //处理运算符的类
@@ -295,6 +326,17 @@ namespace Calculator
                     case "!":
                         cal = new CalculateFac();
                         break;
+                    case "tan":
+                        cal = new CalculateTan();
+                        break;
+                    case "sin":
+                        cal = new CalculateSin();
+                        break;
+                    case "cos":
+                        cal = new CalculateCos();
+                        break;
+
+
                 }
                 return cal;
             }
