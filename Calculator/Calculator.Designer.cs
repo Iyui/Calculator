@@ -64,6 +64,7 @@
             this.btCos = new System.Windows.Forms.Button();
             this.btSin = new System.Windows.Forms.Button();
             this.btTan = new System.Windows.Forms.Button();
+            this.btMod = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -331,7 +332,7 @@
             // 
             // btFac
             // 
-            this.btFac.Location = new System.Drawing.Point(526, 156);
+            this.btFac.Location = new System.Drawing.Point(611, 156);
             this.btFac.Name = "btFac";
             this.btFac.Size = new System.Drawing.Size(66, 43);
             this.btFac.TabIndex = 25;
@@ -406,7 +407,7 @@
             // 
             // btCos
             // 
-            this.btCos.Location = new System.Drawing.Point(611, 157);
+            this.btCos.Location = new System.Drawing.Point(611, 205);
             this.btCos.Name = "btCos";
             this.btCos.Size = new System.Drawing.Size(66, 43);
             this.btCos.TabIndex = 35;
@@ -416,7 +417,7 @@
             // 
             // btSin
             // 
-            this.btSin.Location = new System.Drawing.Point(611, 215);
+            this.btSin.Location = new System.Drawing.Point(611, 265);
             this.btSin.Name = "btSin";
             this.btSin.Size = new System.Drawing.Size(66, 43);
             this.btSin.TabIndex = 34;
@@ -426,7 +427,7 @@
             // 
             // btTan
             // 
-            this.btTan.Location = new System.Drawing.Point(611, 264);
+            this.btTan.Location = new System.Drawing.Point(611, 323);
             this.btTan.Name = "btTan";
             this.btTan.Size = new System.Drawing.Size(66, 43);
             this.btTan.TabIndex = 32;
@@ -434,11 +435,22 @@
             this.btTan.Text = "tan";
             this.btTan.UseVisualStyleBackColor = true;
             // 
+            // btMod
+            // 
+            this.btMod.Location = new System.Drawing.Point(526, 156);
+            this.btMod.Name = "btMod";
+            this.btMod.Size = new System.Drawing.Size(66, 43);
+            this.btMod.TabIndex = 36;
+            this.btMod.Tag = "%";
+            this.btMod.Text = "mod";
+            this.btMod.UseVisualStyleBackColor = true;
+            // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 456);
+            this.Controls.Add(this.btMod);
             this.Controls.Add(this.btCos);
             this.Controls.Add(this.btSin);
             this.Controls.Add(this.btTan);
@@ -521,6 +533,7 @@
         private System.Windows.Forms.Button btCos;
         private System.Windows.Forms.Button btSin;
         private System.Windows.Forms.Button btTan;
+        private System.Windows.Forms.Button btMod;
     }
 }
 

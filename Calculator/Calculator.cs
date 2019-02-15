@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Web.UI.DataVisualization.Charting;
 namespace Calculator
 {
     public partial class Calculator : Form
@@ -117,7 +116,7 @@ namespace Calculator
             btCos.Click += new EventHandler(Operator_button_Click);
             btTan.Click += new EventHandler(Operator_button_Click);
             btSin.Click += new EventHandler(Operator_button_Click);
-
+            btMod.Click += new EventHandler(Operator_button_Click);
 
 
             btLeftParenthesis.Click += new EventHandler(Operator_button_Click);
@@ -295,6 +294,15 @@ namespace Calculator
                 return Result = Math.Cos(NumberA*Math.PI/180);
             }
         }
+
+        public class CalculateMod : Calculate
+        {
+            public override double GetResult()
+            {
+                double Result = 0;
+                return Result = NumberA % NumberB;
+            }
+        }
         #endregion
 
         public class operationFactory               //处理运算符的类
@@ -335,8 +343,9 @@ namespace Calculator
                     case "cos":
                         cal = new CalculateCos();
                         break;
-
-
+                    case "%":
+                        cal = new CalculateMod();
+                        break;
                 }
                 return cal;
             }
