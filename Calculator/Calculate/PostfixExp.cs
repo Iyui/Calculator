@@ -21,7 +21,7 @@ namespace Calculator
         /// <summary>
         /// 非运算符
         /// </summary>
-        private readonly string sNotOperator = ".";
+        private readonly string sNotOperator = ".!";
 
     /// <summary>
     /// 表达式字符串转换成列表形式
@@ -38,9 +38,20 @@ namespace Calculator
                 bool isNum = int.TryParse(c.ToString(), out int result);
                 if (isNum || sNotOperator.Contains(c))//分割数字与运算符
                 {
-                    sElement += c;
-                    if (index != length - 1)
-                        continue;
+                    if (c == '!')
+                    {
+                        var calculate = operationFactory.createOperate("!");
+                        calculate.NumberA = Convert.ToDouble(sElement);
+                        calculate.NumberB = 0;
+                        var total = calculate.GetResult();
+                        sElement = total.ToString();
+                    }
+                    else
+                    {
+                        sElement += c;
+                        if (index != length - 1)
+                            continue;
+                    }
                 }
                 else
                 {
@@ -120,6 +131,7 @@ namespace Calculator
             var postfixExpList = PostfixExpList();
             foreach (var postfixExpElement in postfixExpList)
             {
+                
                 bool isNum = double.TryParse(postfixExpElement, out double r);
                 if (isNum)
                     stack.Push(r);

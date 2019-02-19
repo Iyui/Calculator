@@ -76,7 +76,9 @@ namespace Calculator
         /// <returns></returns>
         private bool canAddOperator(string strOperator)
         {
-            var len = sOperatorNum.Length;
+            int len = 0;
+            if (null != sOperatorNum)
+                len = sOperatorNum.Length;
             if (len == 0)//第一个运算符只能添加左括号
             {
                 if (strOperator == "("|| strOperator == "√")
