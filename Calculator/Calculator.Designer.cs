@@ -74,6 +74,7 @@
             this.bt1.Name = "bt1";
             this.bt1.Size = new System.Drawing.Size(75, 43);
             this.bt1.TabIndex = 0;
+            this.bt1.TabStop = false;
             this.bt1.Text = "1";
             this.bt1.UseVisualStyleBackColor = true;
             // 
@@ -83,6 +84,7 @@
             this.bt2.Name = "bt2";
             this.bt2.Size = new System.Drawing.Size(75, 43);
             this.bt2.TabIndex = 1;
+            this.bt2.TabStop = false;
             this.bt2.Text = "2";
             this.bt2.UseVisualStyleBackColor = true;
             // 
@@ -92,6 +94,7 @@
             this.bt3.Name = "bt3";
             this.bt3.Size = new System.Drawing.Size(75, 43);
             this.bt3.TabIndex = 2;
+            this.bt3.TabStop = false;
             this.bt3.Text = "3";
             this.bt3.UseVisualStyleBackColor = true;
             // 
@@ -101,6 +104,7 @@
             this.bt6.Name = "bt6";
             this.bt6.Size = new System.Drawing.Size(75, 43);
             this.bt6.TabIndex = 5;
+            this.bt6.TabStop = false;
             this.bt6.Text = "6";
             this.bt6.UseVisualStyleBackColor = true;
             // 
@@ -110,6 +114,7 @@
             this.bt5.Name = "bt5";
             this.bt5.Size = new System.Drawing.Size(75, 43);
             this.bt5.TabIndex = 4;
+            this.bt5.TabStop = false;
             this.bt5.Text = "5";
             this.bt5.UseVisualStyleBackColor = true;
             // 
@@ -119,6 +124,7 @@
             this.bt4.Name = "bt4";
             this.bt4.Size = new System.Drawing.Size(75, 43);
             this.bt4.TabIndex = 3;
+            this.bt4.TabStop = false;
             this.bt4.Text = "4";
             this.bt4.UseVisualStyleBackColor = true;
             // 
@@ -128,6 +134,7 @@
             this.bt9.Name = "bt9";
             this.bt9.Size = new System.Drawing.Size(75, 43);
             this.bt9.TabIndex = 8;
+            this.bt9.TabStop = false;
             this.bt9.Text = "9";
             this.bt9.UseVisualStyleBackColor = true;
             // 
@@ -137,6 +144,7 @@
             this.bt8.Name = "bt8";
             this.bt8.Size = new System.Drawing.Size(75, 43);
             this.bt8.TabIndex = 7;
+            this.bt8.TabStop = false;
             this.bt8.Text = "8";
             this.bt8.UseVisualStyleBackColor = true;
             // 
@@ -146,6 +154,7 @@
             this.bt7.Name = "bt7";
             this.bt7.Size = new System.Drawing.Size(75, 43);
             this.bt7.TabIndex = 6;
+            this.bt7.TabStop = false;
             this.bt7.Text = "7";
             this.bt7.UseVisualStyleBackColor = true;
             // 
@@ -155,6 +164,7 @@
             this.bt0.Name = "bt0";
             this.bt0.Size = new System.Drawing.Size(166, 43);
             this.bt0.TabIndex = 10;
+            this.bt0.TabStop = false;
             this.bt0.Text = "0";
             this.bt0.UseVisualStyleBackColor = true;
             // 
@@ -164,6 +174,7 @@
             this.btDivide.Name = "btDivide";
             this.btDivide.Size = new System.Drawing.Size(75, 43);
             this.btDivide.TabIndex = 9;
+            this.btDivide.TabStop = false;
             this.btDivide.Tag = "/";
             this.btDivide.Text = "/";
             this.btDivide.UseVisualStyleBackColor = true;
@@ -174,6 +185,7 @@
             this.btEqual.Name = "btEqual";
             this.btEqual.Size = new System.Drawing.Size(151, 43);
             this.btEqual.TabIndex = 15;
+            this.btEqual.TabStop = false;
             this.btEqual.Tag = "=";
             this.btEqual.Text = "=";
             this.btEqual.UseVisualStyleBackColor = true;
@@ -185,6 +197,7 @@
             this.btMultiply.Name = "btMultiply";
             this.btMultiply.Size = new System.Drawing.Size(75, 43);
             this.btMultiply.TabIndex = 14;
+            this.btMultiply.TabStop = false;
             this.btMultiply.Tag = "*";
             this.btMultiply.Text = "*";
             this.btMultiply.UseVisualStyleBackColor = true;
@@ -195,6 +208,7 @@
             this.btSub.Name = "btSub";
             this.btSub.Size = new System.Drawing.Size(75, 43);
             this.btSub.TabIndex = 13;
+            this.btSub.TabStop = false;
             this.btSub.Tag = "-";
             this.btSub.Text = "-";
             this.btSub.UseVisualStyleBackColor = true;
@@ -205,6 +219,7 @@
             this.btPlus.Name = "btPlus";
             this.btPlus.Size = new System.Drawing.Size(75, 43);
             this.btPlus.TabIndex = 12;
+            this.btPlus.TabStop = false;
             this.btPlus.Tag = "+";
             this.btPlus.Text = "+";
             this.btPlus.UseVisualStyleBackColor = true;
@@ -215,6 +230,7 @@
             this.btPoint.Name = "btPoint";
             this.btPoint.Size = new System.Drawing.Size(75, 43);
             this.btPoint.TabIndex = 16;
+            this.btPoint.TabStop = false;
             this.btPoint.Tag = ".";
             this.btPoint.Text = ".";
             this.btPoint.UseVisualStyleBackColor = true;
@@ -230,6 +246,7 @@
             this.tbDisplayScreen.ReadOnly = true;
             this.tbDisplayScreen.Size = new System.Drawing.Size(422, 50);
             this.tbDisplayScreen.TabIndex = 17;
+            this.tbDisplayScreen.TabStop = false;
             this.tbDisplayScreen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btClear
@@ -238,6 +255,7 @@
             this.btClear.Name = "btClear";
             this.btClear.Size = new System.Drawing.Size(66, 43);
             this.btClear.TabIndex = 19;
+            this.btClear.TabStop = false;
             this.btClear.Text = "C";
             this.btClear.UseVisualStyleBackColor = true;
             this.btClear.Click += new System.EventHandler(this.btClear_Click);
@@ -248,6 +266,7 @@
             this.btBackSpace.Name = "btBackSpace";
             this.btBackSpace.Size = new System.Drawing.Size(66, 43);
             this.btBackSpace.TabIndex = 18;
+            this.btBackSpace.TabStop = false;
             this.btBackSpace.Text = "←";
             this.btBackSpace.UseVisualStyleBackColor = true;
             this.btBackSpace.Click += new System.EventHandler(this.btBackSpace_Click);
@@ -258,6 +277,7 @@
             this.btRightParenthesis.Name = "btRightParenthesis";
             this.btRightParenthesis.Size = new System.Drawing.Size(75, 43);
             this.btRightParenthesis.TabIndex = 21;
+            this.btRightParenthesis.TabStop = false;
             this.btRightParenthesis.Tag = ")";
             this.btRightParenthesis.Text = ")";
             this.btRightParenthesis.UseVisualStyleBackColor = true;
@@ -269,6 +289,7 @@
             this.btLeftParenthesis.Name = "btLeftParenthesis";
             this.btLeftParenthesis.Size = new System.Drawing.Size(75, 43);
             this.btLeftParenthesis.TabIndex = 20;
+            this.btLeftParenthesis.TabStop = false;
             this.btLeftParenthesis.Tag = "(";
             this.btLeftParenthesis.Text = "(";
             this.btLeftParenthesis.UseVisualStyleBackColor = true;
@@ -316,6 +337,7 @@
             this.btSqrt.Name = "btSqrt";
             this.btSqrt.Size = new System.Drawing.Size(75, 43);
             this.btSqrt.TabIndex = 24;
+            this.btSqrt.TabStop = false;
             this.btSqrt.Tag = "√";
             this.btSqrt.Text = "y√x";
             this.btSqrt.UseVisualStyleBackColor = true;
@@ -326,6 +348,7 @@
             this.btPower.Name = "btPower";
             this.btPower.Size = new System.Drawing.Size(75, 43);
             this.btPower.TabIndex = 23;
+            this.btPower.TabStop = false;
             this.btPower.Tag = "^";
             this.btPower.Text = "^";
             this.btPower.UseVisualStyleBackColor = true;
@@ -336,6 +359,7 @@
             this.btFac.Name = "btFac";
             this.btFac.Size = new System.Drawing.Size(66, 43);
             this.btFac.TabIndex = 25;
+            this.btFac.TabStop = false;
             this.btFac.Tag = "!";
             this.btFac.Text = "n!";
             this.btFac.UseVisualStyleBackColor = true;
@@ -346,6 +370,7 @@
             this.btMemorySub.Name = "btMemorySub";
             this.btMemorySub.Size = new System.Drawing.Size(66, 43);
             this.btMemorySub.TabIndex = 30;
+            this.btMemorySub.TabStop = false;
             this.btMemorySub.Tag = "!";
             this.btMemorySub.Text = "M-";
             this.btMemorySub.UseVisualStyleBackColor = true;
@@ -357,6 +382,7 @@
             this.btMemoryPlus.Name = "btMemoryPlus";
             this.btMemoryPlus.Size = new System.Drawing.Size(75, 43);
             this.btMemoryPlus.TabIndex = 29;
+            this.btMemoryPlus.TabStop = false;
             this.btMemoryPlus.Tag = "√";
             this.btMemoryPlus.Text = "M+";
             this.btMemoryPlus.UseVisualStyleBackColor = true;
@@ -368,6 +394,7 @@
             this.btMemorySave.Name = "btMemorySave";
             this.btMemorySave.Size = new System.Drawing.Size(75, 43);
             this.btMemorySave.TabIndex = 28;
+            this.btMemorySave.TabStop = false;
             this.btMemorySave.Text = "MS";
             this.btMemorySave.UseVisualStyleBackColor = true;
             this.btMemorySave.Click += new System.EventHandler(this.btMemorySave_Click);
@@ -378,6 +405,7 @@
             this.btMemoryReply.Name = "btMemoryReply";
             this.btMemoryReply.Size = new System.Drawing.Size(75, 43);
             this.btMemoryReply.TabIndex = 27;
+            this.btMemoryReply.TabStop = false;
             this.btMemoryReply.Tag = ")";
             this.btMemoryReply.Text = "MR";
             this.btMemoryReply.UseVisualStyleBackColor = true;
@@ -389,6 +417,7 @@
             this.btMemoryClear.Name = "btMemoryClear";
             this.btMemoryClear.Size = new System.Drawing.Size(75, 43);
             this.btMemoryClear.TabIndex = 26;
+            this.btMemoryClear.TabStop = false;
             this.btMemoryClear.Tag = "(";
             this.btMemoryClear.Text = "MC";
             this.btMemoryClear.UseVisualStyleBackColor = true;
@@ -400,6 +429,7 @@
             this.btInverse.Name = "btInverse";
             this.btInverse.Size = new System.Drawing.Size(66, 43);
             this.btInverse.TabIndex = 31;
+            this.btInverse.TabStop = false;
             this.btInverse.Tag = "±";
             this.btInverse.Text = "±";
             this.btInverse.UseVisualStyleBackColor = true;
@@ -411,6 +441,7 @@
             this.btCos.Name = "btCos";
             this.btCos.Size = new System.Drawing.Size(66, 43);
             this.btCos.TabIndex = 35;
+            this.btCos.TabStop = false;
             this.btCos.Tag = "cos";
             this.btCos.Text = "cos";
             this.btCos.UseVisualStyleBackColor = true;
@@ -421,6 +452,7 @@
             this.btSin.Name = "btSin";
             this.btSin.Size = new System.Drawing.Size(66, 43);
             this.btSin.TabIndex = 34;
+            this.btSin.TabStop = false;
             this.btSin.Tag = "sin";
             this.btSin.Text = "sin";
             this.btSin.UseVisualStyleBackColor = true;
@@ -431,6 +463,7 @@
             this.btTan.Name = "btTan";
             this.btTan.Size = new System.Drawing.Size(66, 43);
             this.btTan.TabIndex = 32;
+            this.btTan.TabStop = false;
             this.btTan.Tag = "tan";
             this.btTan.Text = "tan";
             this.btTan.UseVisualStyleBackColor = true;
@@ -441,12 +474,14 @@
             this.btMod.Name = "btMod";
             this.btMod.Size = new System.Drawing.Size(66, 43);
             this.btMod.TabIndex = 36;
+            this.btMod.TabStop = false;
             this.btMod.Tag = "%";
             this.btMod.Text = "mod";
             this.btMod.UseVisualStyleBackColor = true;
             // 
             // Calculator
             // 
+            this.AcceptButton = this.btEqual;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 456);
@@ -485,6 +520,7 @@
             this.Controls.Add(this.bt3);
             this.Controls.Add(this.bt2);
             this.Controls.Add(this.bt1);
+            this.KeyPreview = true;
             this.Name = "Calculator";
             this.Text = "Caculator";
             this.Load += new System.EventHandler(this.Calculator_Load);

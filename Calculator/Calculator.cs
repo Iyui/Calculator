@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+
 namespace Calculator
 {
     public partial class Calculator : Form
@@ -86,7 +87,8 @@ namespace Calculator
         {
             InitializeComponent();
             Binding();
-             
+            KeyDown += new KeyEventHandler(Calculator_KeyDown);
+
         }
 
         /// <summary>
@@ -373,8 +375,16 @@ namespace Calculator
         //数字按键
         private void Number_button_Click(object sender, EventArgs e)
         {
+
             Button b = (Button)sender;
             Click_Num(b.Text);
+        }
+
+        //键盘数字按键
+        private void Number_button_Click( int key)
+        {
+            //Button b = (Button)sender;
+            Click_Num(key.ToString());
         }
 
         //运算符按键
@@ -382,6 +392,12 @@ namespace Calculator
         {
             Button b = (Button)sender;
             sOperator = b.Tag.ToString();
+            CalculatorEqual(sOperator);
+        }
+
+        private void Operator_button_Click(string ope)
+        {
+            sOperator = ope;
             CalculatorEqual(sOperator);
         }
 
@@ -513,6 +529,73 @@ namespace Calculator
         private void btInverse_Click(object sender, EventArgs e)
         {
             tbDisplayScreen.Text = CalculationType.Inverse(sOperatorNum);
+        }
+
+        //键盘输入
+        private void Calculator_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.D0:
+                case Keys.NumPad0:
+                    Number_button_Click(0);
+                    break;
+                case Keys.D1:
+                case Keys.NumPad1:
+                    Number_button_Click(1);
+                    break;
+                case Keys.D2:
+                case Keys.NumPad2:
+                    Number_button_Click(2);
+                    break;
+                case Keys.D3:
+                case Keys.NumPad3:
+                    Number_button_Click(3);
+                    break;
+                case Keys.D4:
+                case Keys.NumPad4:
+                    Number_button_Click(4);
+                    break;
+                case Keys.D5:
+                case Keys.NumPad5:
+                    Number_button_Click(5);
+                    break;
+                case Keys.D6:
+                case Keys.NumPad6:
+                    Number_button_Click(6);
+                    break;
+                case Keys.D7:
+                case Keys.NumPad7:
+                    Number_button_Click(7);
+                    break;
+                case Keys.D8:
+                case Keys.NumPad8:
+                    Number_button_Click(8);
+                    break;
+                case Keys.D9:
+                case Keys.NumPad9:
+                    Number_button_Click(9);
+                    break;
+                case Keys.Decimal:
+                    btPoint_Click(sender, e);
+                    break;
+                case Keys.Add:
+                    Operator_button_Click("+");
+                    break;
+                case Keys.Subtract:
+                    Operator_button_Click("-");
+                    break;
+                case Keys.Multiply:
+                    Operator_button_Click("*");
+                    break;
+                case Keys.Divide:
+                    Operator_button_Click("/");
+                    break;
+                case Keys.Back:
+                    btBackSpace_Click(sender, e);
+                    break;
+            }
+             
         }
     }
 }
