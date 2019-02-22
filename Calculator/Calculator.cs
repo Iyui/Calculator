@@ -136,7 +136,7 @@ namespace Calculator
         public virtual string Inverse(string num) { return null; }
         public virtual string SetPoint() { return null; }
 
-        public int strStrCount(string S,string s) {return System.Text.RegularExpressions.Regex.Matches(S, "["+s+"]").Count; }
+        public int StrstrCount(string S,string s) {return System.Text.RegularExpressions.Regex.Matches(S, "["+s+"]").Count; }
         public class Calculate
         {
             public double NumberA { get; set; } = 0;

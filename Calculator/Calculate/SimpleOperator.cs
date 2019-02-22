@@ -49,6 +49,7 @@ namespace Calculator
                 total = null;
                 return "除数不能为零";
             }
+
             calculate = operationFactory.createOperate(lastOperator);
 
             calculate.NumberA = Convert.ToDouble(total);
@@ -70,7 +71,7 @@ namespace Calculator
         {
             if (Button_Clear)
             {
-                sOperatorNum = "0";
+                sOperatorNum = null;
                 Button_Clear = false;
             }
             if (Reset)
@@ -78,10 +79,12 @@ namespace Calculator
                 total = null;
                 Reset = false;
             }
-            sOperatorNum += num;
+            if (sOperatorNum == null||sOperatorNum.Length < 32 )
+                sOperatorNum += num;
             if (sOperatorNum.IndexOf(".") == -1)
             {
-                sOperatorNum = Convert.ToDouble(sOperatorNum).ToString();//去除头部多余的0
+                while (!(sOperatorNum == "0") && sOperatorNum.IndexOf("0") == 0)
+                    sOperatorNum = sOperatorNum.Substring(1);//去除头部多余的0
             }
             Button_BackSpace = true;
             OperatorClicked = false;

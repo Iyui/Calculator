@@ -33,7 +33,7 @@ namespace Calculator
             {
                 if (!isExpressionHolds())
                     return sOperatorNum;
-                var pts = new Parenthesis();//之后版本中用factory代替
+                var pts = new Parenthesis();//之后版本中用factory模式代替
                 pts.Expression = sOperatorNum;
                 sOperatorNum = pts.CalculatePostfixExp();
             }
@@ -93,8 +93,8 @@ namespace Calculator
             }
             if (strOperator == ")" && !norightphs.Contains(c.ToString())) //右括号只能添加在数字或右括号右边且个数不能大于左括号
             {
-                var leftParenthesis = strStrCount(sOperatorNum, "(");
-                var rightParenthesis = strStrCount(sOperatorNum, ")");
+                var leftParenthesis = StrstrCount(sOperatorNum, "(");
+                var rightParenthesis = StrstrCount(sOperatorNum, ")");
                 if (leftParenthesis <= rightParenthesis)//左括号个数小于右括号个数不再添加右括号
                     return false;
                 return true;
@@ -127,8 +127,8 @@ namespace Calculator
             }
             if (!norightphs.Contains(c.ToString())) //表达式最后为右括号或数字
             {
-                var leftParenthesis = strStrCount(sOperatorNum, "(");
-                var rightParenthesis = strStrCount(sOperatorNum, ")");
+                var leftParenthesis = StrstrCount(sOperatorNum, "(");
+                var rightParenthesis = StrstrCount(sOperatorNum, ")");
                 if (leftParenthesis > rightParenthesis)//若右括号数量少于左括号数量,自动补全
                 {
                     var dif = leftParenthesis - rightParenthesis;
