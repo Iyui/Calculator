@@ -89,7 +89,7 @@ namespace Calculator
             Binding();
             KeyDown += new KeyEventHandler(Calculator_KeyDown);//按键
             btEqual.LostFocus += new EventHandler(FocusEqual);
-            Shown += new EventHandler(FrmMag_Shown);
+            Shown += new EventHandler(FocusEqual);
         }
 
         /// <summary>
@@ -127,11 +127,6 @@ namespace Calculator
 
 
 
-        }
-
-        private void FrmMag_Shown(object sender, EventArgs e)
-        {
-            btEqual.Focus();
         }
 
         private void FocusEqual(object sender, EventArgs e)
