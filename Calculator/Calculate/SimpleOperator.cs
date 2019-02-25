@@ -76,6 +76,7 @@ namespace Calculator
             }
             if (Reset)
             {
+                sOperator = "+";
                 total = null;
                 Reset = false;
             }
@@ -93,6 +94,7 @@ namespace Calculator
 
         public override string Inverse(string num)
         {
+            Button_Clear = true;
             sOperatorNum  = (0 - Convert.ToDouble(num)).ToString();
             return sOperatorNum;
         }

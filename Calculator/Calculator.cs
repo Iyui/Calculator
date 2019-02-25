@@ -27,7 +27,7 @@ namespace Calculator
         public static HashSet<string> Precedencehs3 { get; } = new HashSet<string> { "!" };
         #endregion
 
-        public string total
+        public static string total
         {
             get => _total;
             set => _total = value;
@@ -41,7 +41,7 @@ namespace Calculator
         /// <summary>
         /// 用来辨别进行何种运算,与显示框tbDisplayScreen.Text相同
         /// </summary>
-        public string sOperator { get; set; } = "";
+        public static string sOperator { get; set; } = "";
 
         /// <summary>
         /// 记录简单运算中输入的上一个运算符
@@ -87,8 +87,9 @@ namespace Calculator
         {
             InitializeComponent();
             Binding();
-            KeyDown += new KeyEventHandler(Calculator_KeyDown);
-
+            KeyDown += new KeyEventHandler(Calculator_KeyDown);//按键
+            btEqual.LostFocus += new EventHandler(FocusEqual);
+            Shown += new EventHandler(FrmMag_Shown);
         }
 
         /// <summary>
@@ -123,12 +124,24 @@ namespace Calculator
 
             btLeftParenthesis.Click += new EventHandler(Operator_button_Click);
             btRightParenthesis.Click += new EventHandler(Operator_button_Click);
+
+
+
+        }
+
+        private void FrmMag_Shown(object sender, EventArgs e)
+        {
+            btEqual.Focus();
+        }
+
+        private void FocusEqual(object sender, EventArgs e)
+        {
+            btEqual.Focus();
         }
 
         private void Calculator_Load(object sender, EventArgs e)
         {
             CalculationType = EqualFactory.createOperate(1);
-            
         }
 
         public virtual string Equal(string strOperator = "+", bool isEqualSign = false) { return ""; }
@@ -534,6 +547,7 @@ namespace Calculator
         //键盘输入
         private void Calculator_KeyDown(object sender, KeyEventArgs e)
         {
+            
             switch (e.KeyCode)
             {
                 case Keys.D0:

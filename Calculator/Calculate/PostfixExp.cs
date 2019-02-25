@@ -23,11 +23,11 @@ namespace Calculator
         /// </summary>
         private readonly string sNotOperator = ".!";
 
-    /// <summary>
-    /// 表达式字符串转换成列表形式
-    /// </summary>
-    /// <returns></returns>
-    public List<string> ExpressionList()
+        /// <summary>
+        /// 表达式字符串转换成列表形式
+        /// </summary>
+        /// <returns></returns>
+        public List<string> ExpressionList()
         {
             List<string> expressionList = new List<string>();
             int length = Expression.Length;
